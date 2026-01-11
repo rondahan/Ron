@@ -1,6 +1,6 @@
 
 import React, { useState, useEffect } from 'react';
-import { ChevronRight, ChevronLeft, Github, Linkedin, Mail } from 'lucide-react';
+import { ChevronRight, ChevronLeft, Github, Linkedin, Mail, Sparkles } from 'lucide-react';
 import { RON_DATA, Language, TRANSLATIONS } from '../constants';
 
 interface HeroProps {
@@ -21,7 +21,7 @@ const Hero: React.FC<HeroProps> = ({ lang }) => {
       if (!isDeleting) {
         setDisplayText(title.substring(0, displayText.length + 1));
         if (displayText.length === title.length) {
-          setTimeout(() => setIsDeleting(true), 2000);
+          setTimeout(() => setIsDeleting(true), 2500);
         }
       } else {
         setDisplayText(title.substring(0, displayText.length - 1));
@@ -30,67 +30,74 @@ const Hero: React.FC<HeroProps> = ({ lang }) => {
           setTitleIndex((titleIndex + 1) % titles.length);
         }
       }
-    }, isDeleting ? 50 : 100);
+    }, isDeleting ? 40 : 80);
 
     return () => clearTimeout(timer);
   }, [displayText, isDeleting, titleIndex, titles]);
 
+  const openCharlie = () => {
+    window.dispatchEvent(new CustomEvent('open-charlie'));
+  };
+
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden px-6">
-      <div className="absolute inset-0 z-0 opacity-20">
-        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-blue-500 rounded-full blur-[120px] animate-pulse"></div>
-        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-purple-600 rounded-full blur-[120px] animate-pulse delay-700"></div>
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden px-6 pt-20">
+      {/* Dynamic Background Elements */}
+      <div className="absolute inset-0 z-0">
+        <div className="absolute top-1/4 left-1/4 w-[500px] h-[500px] bg-blue-600/10 rounded-full blur-[120px] animate-pulse"></div>
+        <div className="absolute bottom-1/4 right-1/4 w-[500px] h-[500px] bg-purple-600/10 rounded-full blur-[120px] animate-pulse delay-1000"></div>
+        <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-[0.03] pointer-events-none"></div>
       </div>
 
-      <div className="relative z-10 text-center max-w-4xl">
-        <div className="inline-block mb-6 px-4 py-1 rounded-full border border-blue-500/30 bg-blue-500/10 text-blue-400 text-sm font-medium tracking-wider uppercase">
+      <div className="relative z-10 text-center max-w-5xl">
+        <div className="inline-flex items-center gap-2 mb-8 px-5 py-2 rounded-full border border-blue-500/30 bg-blue-500/10 text-blue-400 text-xs font-bold tracking-[0.2em] uppercase backdrop-blur-md animate-float">
+          <Sparkles className="w-3.5 h-3.5" />
           {t.available}
         </div>
         
-        <h1 className="text-5xl md:text-7xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-white via-slate-400 to-slate-600 leading-tight">
-          {t.greeting} {lang === 'he' ? RON_DATA.nameHe : RON_DATA.name}
+        <h1 className="text-6xl md:text-9xl font-black mb-8 bg-clip-text text-transparent bg-gradient-to-b from-white via-white to-slate-500 leading-none tracking-tighter">
+          {t.greeting} <br className="md:hidden" /> {lang === 'he' ? RON_DATA.nameHe : RON_DATA.name}
         </h1>
         
-        <div className="h-12 md:h-16 mb-8">
-          <p className="text-2xl md:text-4xl font-semibold text-blue-400 mono">
+        <div className="h-20 mb-10">
+          <p className="text-3xl md:text-5xl font-black text-blue-500 mono tracking-tight">
             {displayText}
-            <span className="animate-pulse border-r-4 border-blue-400 ml-1"></span>
+            <span className="inline-block w-2 md:w-3 h-10 md:h-12 bg-blue-500 ml-2 animate-pulse align-middle"></span>
           </p>
         </div>
 
-        <p className="text-lg md:text-xl text-slate-400 mb-10 max-w-2xl mx-auto leading-relaxed">
+        <p className="text-xl md:text-2xl text-slate-400 mb-14 max-w-3xl mx-auto leading-relaxed font-medium">
           {lang === 'he' ? RON_DATA.bioHe : RON_DATA.bio}
         </p>
 
-        <div className="flex flex-wrap justify-center gap-4 mb-12">
+        <div className="flex flex-wrap justify-center gap-6 mb-16">
           <button 
             onClick={() => document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' })}
-            className="px-8 py-3 bg-blue-600 hover:bg-blue-500 text-white rounded-lg font-semibold transition-all flex items-center gap-2 group shadow-lg shadow-blue-500/20"
+            className="px-12 py-5 bg-blue-600 hover:bg-blue-500 text-white rounded-2xl font-black text-lg transition-all flex items-center gap-3 group shadow-2xl shadow-blue-600/40 hover:-translate-y-1 active:scale-95"
           >
             {t.viewProjects}
             {lang === 'he' ? (
-              <ChevronLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
+              <ChevronLeft className="w-5 h-5 group-hover:-translate-x-2 transition-transform" />
             ) : (
-              <ChevronRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+              <ChevronRight className="w-5 h-5 group-hover:translate-x-2 transition-transform" />
             )}
           </button>
           <button 
-            onClick={() => document.getElementById('chatbot')?.scrollIntoView({ behavior: 'smooth' })}
-            className="px-8 py-3 bg-white/5 hover:bg-white/10 border border-white/10 rounded-lg font-semibold transition-all text-white"
+            onClick={openCharlie}
+            className="px-12 py-5 bg-white/5 hover:bg-white/10 border border-white/10 rounded-2xl font-black text-lg transition-all text-white backdrop-blur-xl hover:-translate-y-1 active:scale-95"
           >
             {t.chatWithCharlie}
           </button>
         </div>
 
-        <div className="flex justify-center gap-8 text-slate-500">
-          <a href={RON_DATA.github} target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">
-            <Github className="w-6 h-6" />
+        <div className="flex justify-center gap-10 text-slate-500">
+          <a href={RON_DATA.github} target="_blank" rel="noopener noreferrer" className="hover:text-white transition-all hover:scale-125">
+            <Github className="w-7 h-7" />
           </a>
-          <a href={RON_DATA.linkedin} target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">
-            <Linkedin className="w-6 h-6" />
+          <a href={RON_DATA.linkedin} target="_blank" rel="noopener noreferrer" className="hover:text-white transition-all hover:scale-125">
+            <Linkedin className="w-7 h-7" />
           </a>
-          <a href={`mailto:${RON_DATA.email}`} className="hover:text-white transition-colors">
-            <Mail className="w-6 h-6" />
+          <a href={`mailto:${RON_DATA.email}`} className="hover:text-white transition-all hover:scale-125">
+            <Mail className="w-7 h-7" />
           </a>
         </div>
       </div>

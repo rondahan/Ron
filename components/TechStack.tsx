@@ -1,7 +1,7 @@
 
 import React, { useState } from 'react';
 import { GET_CATEGORIES, Language, TRANSLATIONS } from '../constants';
-import { Info, ExternalLink } from 'lucide-react';
+import { Info, ExternalLink, Box } from 'lucide-react';
 
 interface TechStackProps {
   lang: Language;
@@ -22,27 +22,27 @@ const TechStack: React.FC<TechStackProps> = ({ lang }) => {
   };
 
   return (
-    <section id="stack" className="py-24 px-6 relative overflow-visible">
+    <section id="stack" className="py-32 px-6 relative overflow-visible">
       <div className="max-w-7xl mx-auto">
-        <div className="mb-16 text-center">
-          <h2 className="text-4xl font-bold mb-4 tracking-tight">{t.title}</h2>
-          <p className="text-slate-400 max-w-2xl mx-auto">{t.subtitle}</p>
+        <div className="mb-24 text-center">
+          <h2 className="text-5xl font-black mb-6 tracking-tight">{t.title}</h2>
+          <p className="text-slate-400 max-w-2xl mx-auto text-lg font-medium">{t.subtitle}</p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {categories.map((cat, idx) => (
             <div 
               key={idx} 
-              className="glass p-8 rounded-2xl border-white/5 hover:border-blue-500/30 transition-all group relative"
+              className="glass p-10 rounded-[2.5rem] border-white/5 hover:border-blue-500/30 transition-all group relative flex flex-col"
             >
-              <div className="flex items-center gap-3 mb-6">
-                <div className="p-3 bg-white/5 rounded-xl group-hover:scale-110 transition-transform">
+              <div className="flex items-center gap-5 mb-10">
+                <div className="w-14 h-14 bg-white/5 rounded-2xl flex items-center justify-center group-hover:scale-110 group-hover:bg-blue-600/20 transition-all duration-500 shadow-xl">
                   {cat.icon}
                 </div>
-                <h3 className="text-lg font-bold">{cat.name}</h3>
+                <h3 className="text-xl font-black tracking-tight">{cat.name}</h3>
               </div>
               
-              <div className="flex flex-wrap gap-2">
+              <div className="flex flex-wrap gap-3">
                 {cat.items.map(tool => (
                   <div 
                     key={tool.name}
@@ -51,28 +51,31 @@ const TechStack: React.FC<TechStackProps> = ({ lang }) => {
                     onMouseLeave={() => setActiveTooltip(null)}
                   >
                     <button 
-                      className={`px-3 py-1.5 bg-white/5 hover:bg-blue-600/20 border border-white/5 hover:border-blue-500/30 rounded-lg text-sm text-slate-300 transition-all flex items-center gap-2 ${tool.projectId ? 'cursor-pointer' : 'cursor-default'}`}
+                      className={`px-4 py-2.5 bg-white/5 hover:bg-blue-600 text-slate-300 hover:text-white border border-white/5 hover:border-blue-500 rounded-xl text-xs font-bold transition-all flex items-center gap-2 shadow-lg ${tool.projectId ? 'cursor-pointer' : 'cursor-default'}`}
                       onClick={() => tool.projectId && handleProjectClick(tool.projectId)}
                     >
                       {tool.name}
-                      {tool.projectId && <ExternalLink className="w-3 h-3 opacity-30 group-hover/tool:opacity-100" />}
+                      {tool.projectId && <ExternalLink className="w-3 h-3 opacity-50" />}
                     </button>
 
-                    <div className={`absolute bottom-full left-1/2 -translate-x-1/2 mb-3 w-64 p-4 bg-slate-900 border border-white/10 rounded-xl shadow-2xl z-50 pointer-events-none transition-all duration-200 origin-bottom ${activeTooltip === tool.name ? 'opacity-100 scale-100 translate-y-0' : 'opacity-0 scale-95 translate-y-2'}`}>
-                      <div className="flex items-start gap-2">
-                        <Info className="w-4 h-4 text-blue-400 mt-1 flex-shrink-0" />
+                    <div className={`absolute bottom-full left-1/2 -translate-x-1/2 mb-4 w-72 p-5 bg-slate-900 border border-white/10 rounded-2xl shadow-[0_30px_60px_-15px_rgba(0,0,0,0.5)] z-50 pointer-events-none transition-all duration-300 origin-bottom ${activeTooltip === tool.name ? 'opacity-100 scale-100 translate-y-0' : 'opacity-0 scale-95 translate-y-2'}`}>
+                      <div className="flex items-start gap-3">
+                        <div className="p-2 bg-blue-600/20 rounded-lg">
+                          <Info className="w-4 h-4 text-blue-400" />
+                        </div>
                         <div>
-                          <p className="text-xs text-slate-200 leading-relaxed">
+                          <p className="text-sm font-medium text-slate-200 leading-relaxed">
                             {lang === 'he' ? tool.descriptionHe : tool.description}
                           </p>
                           {tool.projectId && (
-                            <p className="mt-2 text-[10px] text-blue-400 font-bold uppercase tracking-wider">
+                            <div className="mt-4 flex items-center gap-2 text-[10px] text-blue-400 font-black uppercase tracking-[0.2em] border-t border-white/5 pt-3">
+                              <Box className="w-3 h-3" />
                               {lang === 'he' ? 'לחץ לצפייה בפרויקט' : 'Click to view project'}
-                            </p>
+                            </div>
                           )}
                         </div>
                       </div>
-                      <div className="absolute top-full left-1/2 -translate-x-1/2 border-[6px] border-transparent border-t-slate-900"></div>
+                      <div className="absolute top-full left-1/2 -translate-x-1/2 border-[8px] border-transparent border-t-slate-900"></div>
                     </div>
                   </div>
                 ))}
@@ -81,8 +84,9 @@ const TechStack: React.FC<TechStackProps> = ({ lang }) => {
           ))}
         </div>
         
-        <div className="mt-16 glass p-8 rounded-2xl border-dashed border-slate-700 text-center">
-          <p className="text-slate-400 text-sm italic">"{t.footer}"</p>
+        <div className="mt-24 glass p-10 rounded-[2.5rem] border-dashed border-slate-700 text-center relative overflow-hidden group">
+          <div className="absolute inset-0 bg-blue-600/5 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+          <p className="text-slate-400 text-lg italic font-medium relative z-10">"{t.footer}"</p>
         </div>
       </div>
     </section>

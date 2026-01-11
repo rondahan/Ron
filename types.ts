@@ -8,6 +8,7 @@ export interface Project {
   technologies: string[];
   status: string;
   image: string;
+  githubUrl?: string;
 }
 
 export interface Experience {

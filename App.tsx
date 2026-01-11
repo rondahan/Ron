@@ -5,84 +5,42 @@ import Projects from './components/Projects';
 import TechStack from './components/TechStack';
 import Chatbot from './components/Chatbot';
 import Experience from './components/Experience';
-import { Mail, Github, Linkedin, MessageSquare, Terminal, Languages, Menu, X } from 'lucide-react';
+import { Mail, Github, Linkedin, Terminal, Languages, Menu, X } from 'lucide-react';
 import { Language, TRANSLATIONS, RON_DATA } from './constants';
-
-const About = ({ lang }: { lang: Language }) => {
-  const t = TRANSLATIONS[lang].about;
-  return (
-    <section id="about" className="py-24 px-6 border-y border-white/5">
-      <div className="max-w-4xl mx-auto">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-          <div>
-            <h2 className="text-3xl font-bold mb-6">{t.title}</h2>
-            <p className="text-slate-400 leading-relaxed mb-6">{t.description}</p>
-            <div className="space-y-4">
-              <div className="flex gap-4">
-                <div className="w-10 h-10 rounded-lg bg-blue-600/20 flex items-center justify-center flex-shrink-0">
-                  <MessageSquare className="w-5 h-5 text-blue-500" />
-                </div>
-                <div>
-                  <h4 className="font-bold text-white">{t.ragTitle}</h4>
-                  <p className="text-sm text-slate-500">{t.ragDesc}</p>
-                </div>
-              </div>
-              <div className="flex gap-4">
-                <div className="w-10 h-10 rounded-lg bg-purple-600/20 flex items-center justify-center flex-shrink-0">
-                  <Terminal className="w-5 h-5 text-purple-500" />
-                </div>
-                <div>
-                  <h4 className="font-bold text-white">{t.llmTitle}</h4>
-                  <p className="text-sm text-slate-500">{t.llmDesc}</p>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className="relative">
-            <div className="aspect-square glass rounded-3xl overflow-hidden relative z-10 p-1">
-               <img src="https://picsum.photos/seed/ron/600/600" alt="Ron Dahan" className="w-full h-full object-cover rounded-[20px]" />
-            </div>
-            <div className="absolute -bottom-6 -right-6 w-32 h-32 bg-blue-600/20 rounded-full blur-3xl opacity-50"></div>
-            <div className="absolute -top-6 -left-6 w-32 h-32 bg-purple-600/20 rounded-full blur-3xl opacity-50"></div>
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-};
 
 const Contact = ({ lang }: { lang: Language }) => {
   const t = TRANSLATIONS[lang].contact;
   return (
-    <section id="contact" className="py-24 px-6 bg-slate-900/50">
-      <div className="max-w-4xl mx-auto text-center">
-        <h2 className="text-4xl font-bold mb-4">{t.title}</h2>
-        <p className="text-slate-400 mb-12 max-w-lg mx-auto">{t.subtitle}</p>
+    <section id="contact" className="py-32 px-6 bg-slate-900/30 relative">
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-blue-900/10 via-transparent to-transparent opacity-50"></div>
+      <div className="max-w-4xl mx-auto text-center relative z-10">
+        <h2 className="text-5xl font-extrabold mb-6 tracking-tight">{t.title}</h2>
+        <p className="text-slate-400 mb-16 max-w-lg mx-auto text-lg">{t.subtitle}</p>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
-          <a href={`mailto:${RON_DATA.email}`} className="glass p-8 rounded-2xl flex flex-col items-center gap-4 group cursor-pointer hover:border-blue-500/30 transition-all active:scale-95">
-            <div className="p-4 bg-blue-600/10 rounded-full text-blue-500 group-hover:scale-110 transition-transform">
-              <Mail className="w-6 h-6" />
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
+          <a href={`mailto:${RON_DATA.email}`} className="glass p-10 rounded-3xl flex flex-col items-center gap-6 group cursor-pointer hover:border-blue-500/50 hover:shadow-[0_0_50px_rgba(59,130,246,0.1)] transition-all active:scale-[0.98]">
+            <div className="p-6 bg-blue-600/10 rounded-2xl text-blue-500 group-hover:scale-110 group-hover:bg-blue-600/20 transition-all duration-300">
+              <Mail className="w-8 h-8" />
             </div>
             <div>
-              <h4 className="font-bold text-lg">{t.emailLabel}</h4>
-              <p className="text-slate-500">{RON_DATA.email}</p>
+              <h4 className="font-bold text-xl mb-1">{t.emailLabel}</h4>
+              <p className="text-slate-500 font-mono text-sm">{RON_DATA.email}</p>
             </div>
           </a>
-          <a href={RON_DATA.linkedin} target="_blank" rel="noopener noreferrer" className="glass p-8 rounded-2xl flex flex-col items-center gap-4 group cursor-pointer hover:border-blue-500/30 transition-all active:scale-95">
-            <div className="p-4 bg-blue-600/10 rounded-full text-blue-500 group-hover:scale-110 transition-transform">
-              <Linkedin className="w-6 h-6" />
+          <a href={RON_DATA.linkedin} target="_blank" rel="noopener noreferrer" className="glass p-10 rounded-3xl flex flex-col items-center gap-6 group cursor-pointer hover:border-blue-500/50 hover:shadow-[0_0_50px_rgba(59,130,246,0.1)] transition-all active:scale-[0.98]">
+            <div className="p-6 bg-blue-600/10 rounded-2xl text-blue-500 group-hover:scale-110 group-hover:bg-blue-600/20 transition-all duration-300">
+              <Linkedin className="w-8 h-8" />
             </div>
             <div>
-              <h4 className="font-bold text-lg">{t.linkedinLabel}</h4>
-              <p className="text-slate-500">{t.linkedinDesc}</p>
+              <h4 className="font-bold text-xl mb-1">{t.linkedinLabel}</h4>
+              <p className="text-slate-500 text-sm">{t.linkedinDesc}</p>
             </div>
           </a>
         </div>
 
         <button 
           onClick={() => window.location.href = `mailto:${RON_DATA.email}`}
-          className="px-12 py-4 bg-blue-600 hover:bg-blue-500 text-white rounded-xl font-bold text-lg transition-all shadow-xl shadow-blue-600/20 active:scale-95"
+          className="px-16 py-5 bg-blue-600 hover:bg-blue-500 text-white rounded-2xl font-black text-xl transition-all shadow-2xl shadow-blue-600/30 active:scale-95 hover:-translate-y-1"
         >
           {t.cta}
         </button>
@@ -94,22 +52,30 @@ const Contact = ({ lang }: { lang: Language }) => {
 const App: React.FC = () => {
   const [lang, setLang] = useState<Language>('en');
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const t = TRANSLATIONS[lang];
 
   useEffect(() => {
-    const handleAnchorClick = (e: MouseEvent) => {
-      const target = e.target as HTMLElement;
-      if (target.tagName === 'A' && target.getAttribute('href')?.startsWith('#')) {
-        e.preventDefault();
-        const id = target.getAttribute('href')?.substring(1);
-        if (id) {
-          setIsMenuOpen(false);
-          document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
+    const handleScroll = () => setScrolled(window.scrollY > 20);
+    window.addEventListener('scroll', handleScroll);
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
         }
-      }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('section').forEach(section => {
+      section.classList.add('reveal');
+      observer.observe(section);
+    });
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      observer.disconnect();
     };
-    window.addEventListener('click', handleAnchorClick);
-    return () => window.removeEventListener('click', handleAnchorClick);
   }, []);
 
   const toggleLang = (e: React.MouseEvent) => {
@@ -117,86 +83,96 @@ const App: React.FC = () => {
     setLang(prev => prev === 'en' ? 'he' : 'en');
   };
 
-  const toggleMenu = (e: React.MouseEvent) => {
-    e.stopPropagation();
-    setIsMenuOpen(!isMenuOpen);
-  };
+  const navItems = [
+    { key: 'projects', href: '#projects' },
+    { key: 'stack', href: '#stack' },
+    { key: 'journey', href: '#experience' }
+  ];
 
   return (
-    <div className="min-h-screen selection:bg-blue-500/30" dir={lang === 'he' ? 'rtl' : 'ltr'}>
-      {/* Navigation */}
-      <nav className="fixed top-0 left-0 right-0 z-[100] px-6 py-4 flex justify-center">
-        <div className="relative w-full max-w-4xl flex justify-center pointer-events-none">
-          <div className="glass px-6 py-3 rounded-full flex items-center gap-4 md:gap-8 pointer-events-auto relative shadow-xl">
-            <a href="#" className="text-sm font-bold text-white tracking-tighter flex items-center gap-2 transition-transform active:scale-95">
-              <Terminal className="w-4 h-4 text-blue-500" />
+    <div className="min-h-screen relative selection:bg-blue-500/30" dir={lang === 'he' ? 'rtl' : 'ltr'}>
+      <div className="glow-cursor"></div>
+
+      <nav className={`fixed top-0 left-0 right-0 z-[120] transition-all duration-500 pointer-events-none ${scrolled ? 'py-4' : 'py-8'}`}>
+        <div className="max-w-4xl mx-auto px-6 flex justify-center">
+          <div className={`glass px-8 py-3 rounded-full flex items-center gap-6 md:gap-10 transition-all duration-500 pointer-events-auto ${scrolled ? 'shadow-2xl border-white/20' : 'border-white/5'}`}>
+            <a href="#" className="text-lg font-black text-white tracking-tighter flex items-center gap-2 group transition-all active:scale-95">
+              <Terminal className="w-5 h-5 text-blue-500 group-hover:rotate-12 transition-transform" />
               RD.AI
             </a>
             
-            <div className="hidden md:flex items-center gap-6">
-              <a href="#projects" className="text-xs font-medium text-slate-400 hover:text-white transition-colors">{t.nav.projects}</a>
-              <a href="#stack" className="text-xs font-medium text-slate-400 hover:text-white transition-colors">{t.nav.stack}</a>
-              <a href="#experience" className="text-xs font-medium text-slate-400 hover:text-white transition-colors">{t.nav.journey}</a>
-              <a href="#chatbot" className="text-xs font-medium text-slate-400 hover:text-white transition-colors">{t.nav.charlie}</a>
+            <div className="hidden md:flex items-center gap-8">
+              {navItems.map((item) => (
+                <a 
+                  key={item.key}
+                  href={item.href} 
+                  className="text-[11px] font-bold uppercase tracking-widest text-slate-400 hover:text-white transition-all relative group cursor-pointer"
+                >
+                  {(t.nav as any)[item.key]}
+                  <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-500 transition-all group-hover:w-full"></span>
+                </a>
+              ))}
             </div>
             
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-4">
               <button 
                 onClick={toggleLang}
-                className="p-2 hover:bg-white/10 rounded-full text-slate-400 transition-all flex items-center gap-2 px-3 border border-white/5 active:scale-95 pointer-events-auto"
-                aria-label="Toggle Language"
+                className="p-2 hover:bg-white/10 rounded-full text-slate-400 transition-all flex items-center gap-2 px-3 border border-white/5 active:scale-95"
               >
-                <Languages className="w-3.5 h-3.5" />
-                <span className="text-[10px] font-bold uppercase">{lang === 'en' ? 'Heb' : 'Eng'}</span>
+                <Languages className="w-4 h-4" />
+                <span className="text-[10px] font-black uppercase">{lang === 'en' ? 'Heb' : 'Eng'}</span>
               </button>
               
-              <a href={`mailto:${RON_DATA.email}`} className="hidden sm:block px-4 py-1.5 bg-blue-600 hover:bg-blue-500 text-white rounded-full text-xs font-bold transition-all whitespace-nowrap active:scale-95">
-                {t.nav.contact}
-              </a>
-              
               <button 
-                onClick={toggleMenu}
-                className="md:hidden p-2 hover:bg-white/10 rounded-full text-slate-400 transition-all border border-white/5 active:scale-95 pointer-events-auto"
-                aria-label="Open Menu"
+                onClick={() => setIsMenuOpen(!isMenuOpen)}
+                className="md:hidden p-2 hover:bg-white/10 rounded-full text-slate-400 transition-all border border-white/5 active:scale-95"
               >
-                {isMenuOpen ? <X className="w-4 h-4" /> : <Menu className="w-4 h-4" />}
+                {isMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
               </button>
             </div>
           </div>
         </div>
       </nav>
 
-      <div className={`md:hidden fixed inset-0 z-[90] transition-all duration-300 ${isMenuOpen ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}>
-        <div className="absolute inset-0 bg-slate-950/90 backdrop-blur-md" onClick={() => setIsMenuOpen(false)}></div>
-        <div className={`absolute top-24 left-6 right-6 p-8 glass rounded-3xl flex flex-col items-center gap-6 transition-all duration-300 transform ${isMenuOpen ? 'translate-y-0 scale-100 opacity-100' : '-translate-y-4 scale-95 opacity-0'}`}>
-          <a href="#projects" className="text-xl font-bold text-slate-400 hover:text-white transition-colors w-full text-center py-2">{t.nav.projects}</a>
-          <a href="#stack" className="text-xl font-bold text-slate-400 hover:text-white transition-colors w-full text-center py-2">{t.nav.stack}</a>
-          <a href="#experience" className="text-xl font-bold text-slate-400 hover:text-white transition-colors w-full text-center py-2">{t.nav.journey}</a>
-          <a href="#chatbot" className="text-xl font-bold text-slate-400 hover:text-white transition-colors w-full text-center py-2">{t.nav.charlie}</a>
-          <a href={`mailto:${RON_DATA.email}`} className="w-full text-center py-4 bg-blue-600 hover:bg-blue-500 text-white rounded-2xl font-bold transition-all mt-4">
+      {/* Mobile Menu Overlay */}
+      <div className={`md:hidden fixed inset-0 z-[150] transition-all duration-700 ${isMenuOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'}`}>
+        <div className="absolute inset-0 bg-slate-950/95 backdrop-blur-xl" onClick={() => setIsMenuOpen(false)}></div>
+        <div className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full px-12 space-y-8 text-center transition-all duration-700 transform ${isMenuOpen ? 'scale-100 opacity-100' : 'scale-90 opacity-0'}`}>
+          {navItems.map((item) => (
+            <a 
+              key={item.key}
+              href={item.href}
+              onClick={() => setIsMenuOpen(false)}
+              className="block text-4xl font-black text-slate-500 hover:text-white transition-all"
+            >
+              {(t.nav as any)[item.key]}
+            </a>
+          ))}
+          <a href={`mailto:${RON_DATA.email}`} className="block text-2xl text-blue-500 font-bold pt-8">
             {t.nav.contact}
           </a>
         </div>
       </div>
 
-      <main>
+      <main className="relative z-10">
         <Hero lang={lang} />
-        <About lang={lang} />
         <Projects lang={lang} />
         <TechStack lang={lang} />
         <Experience lang={lang} />
-        <Chatbot lang={lang} />
         <Contact lang={lang} />
       </main>
 
-      <footer className="py-12 border-t border-white/5 text-center">
-        <p className="text-slate-500 text-sm mb-4">
+      {/* Floating Chatbot Widget */}
+      <Chatbot lang={lang} />
+
+      <footer className="py-20 border-t border-white/5 text-center relative z-10 bg-slate-950">
+        <p className="text-slate-500 text-sm font-medium mb-6">
           © {new Date().getFullYear()} Ron Dahan • {lang === 'he' ? 'נבנה עם React, Tailwind ו-Gemini 3' : 'Built with React, Tailwind & Gemini 3'}
         </p>
-        <div className="flex justify-center gap-4 text-slate-500">
-           <a href={RON_DATA.github} target="_blank" rel="noopener noreferrer"><Github className="w-5 h-5 hover:text-white cursor-pointer" /></a>
-           <a href={RON_DATA.linkedin} target="_blank" rel="noopener noreferrer"><Linkedin className="w-5 h-5 hover:text-white cursor-pointer" /></a>
-           <a href={`mailto:${RON_DATA.email}`}><Mail className="w-5 h-5 hover:text-white cursor-pointer" /></a>
+        <div className="flex justify-center gap-8 text-slate-500">
+           <a href={RON_DATA.github} target="_blank" rel="noopener noreferrer" className="hover:text-white transition-all transform hover:scale-125"><Github className="w-6 h-6" /></a>
+           <a href={RON_DATA.linkedin} target="_blank" rel="noopener noreferrer" className="hover:text-white transition-all transform hover:scale-125"><Linkedin className="w-6 h-6" /></a>
+           <a href={`mailto:${RON_DATA.email}`} className="hover:text-white transition-all transform hover:scale-125"><Mail className="w-6 h-6" /></a>
         </div>
       </footer>
     </div>

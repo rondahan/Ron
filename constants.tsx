@@ -26,14 +26,6 @@ export const TRANSLATIONS = {
       viewProjects: "View Projects",
       chatWithCharlie: "Chat with Charlie"
     },
-    about: {
-      title: "Mastering the AI Lifecycle",
-      description: "I don't just build chatbots; I architect production-ready AI ecosystems. My specialty lies in bridging the gap between cutting-edge LLM research and robust software engineering.",
-      ragTitle: "RAG Specialization",
-      ragDesc: "High-precision retrieval systems with minimal latency.",
-      llmTitle: "LLM Engineering",
-      llmDesc: "Orchestrating complex reasoning loops and agent swarms."
-    },
     projects: {
       title: "Featured Research",
       subtitle: "A selection of my recent work focusing on systematic reasoning workflows and production AI deployments.",
@@ -54,7 +46,13 @@ export const TRANSLATIONS = {
       placeholder: "Ask Charlie anything juicy about Ron...",
       clear: "Reset conversation?",
       memory: "Turns in memory",
-      sources: "Source"
+      sources: "Source",
+      suggestions: [
+        "What's Ron's main expertise?",
+        "Tell me about DecisionLab.",
+        "What AI tools does he use most?",
+        "How can I hire him?"
+      ]
     },
     experience: {
       title: "Professional Journey",
@@ -78,18 +76,10 @@ export const TRANSLATIONS = {
       contact: "צור קשר"
     },
     hero: {
-      available: "זמין להזדמנויות AI/ML",
+      available: "זמין להזדמיונות AI/ML",
       greeting: "היי, אני",
       viewProjects: "צפה בפרויקטים",
       chatWithCharlie: "דבר עם צ'ארלי"
-    },
-    about: {
-      title: "שליטה במחזור החיים של AI",
-      description: "אני לא רק בונה צ'אטבוטים; אני מתכנן מערכות AI מוכנות לייצור. המומחיות שלי טמונה בגישור על הפער בין מחקר LLM מתקדם להנדסת תוכנה חזקה.",
-      ragTitle: "התמחות ב-RAG",
-      ragDesc: "מערכות שליפה בדיוק גבוה עם השהיה מינימלית.",
-      llmTitle: "הנדסת LLM",
-      llmDesc: "ניהול לולאות חשיבה מורכבות וקבוצות סוכנים (Agent swarms)."
     },
     projects: {
       title: "פרויקט נבחר",
@@ -111,7 +101,13 @@ export const TRANSLATIONS = {
       placeholder: "תשאל את צ'ארלי משהו עסיסי על רון...",
       clear: "לאפס את השיחה?",
       memory: "תורות בזיכרון",
-      sources: "מקור"
+      sources: "מקור",
+      suggestions: [
+        "מה המומחיות העיקרית של רון?",
+        "ספר לי על DecisionLab.",
+        "באיזה כלי AI הוא הכי משתמש?",
+        "איך אפשר לגייס אותו?"
+      ]
     },
     experience: {
       title: "המסע המקצועי",
@@ -150,7 +146,8 @@ export const PROJECTS: Record<Language, Project[]> = {
       features: ["AI-assisted analysis", "Constraint-based evaluation", "Systematic reasoning workflows"],
       technologies: ["Python", "OpenRouter", "React", "Analytical Frameworks"],
       status: "Completed Academic Project",
-      image: "https://images.unsplash.com/photo-1639322537228-f710d846310a?auto=format&fit=crop&q=80&w=1000"
+      image: "https://images.unsplash.com/photo-1639322537228-f710d846310a?auto=format&fit=crop&q=80&w=1000",
+      githubUrl: "https://github.com/rondahan/DecisionLab"
     }
   ],
   he: [
@@ -162,12 +159,12 @@ export const PROJECTS: Record<Language, Project[]> = {
       features: ["ניתוח בעזרת AI", "הערכה מבוססת אילוצים", "תהליכי חשיבה שיטתיים"],
       technologies: ["Python", "OpenRouter", "React", "Analytical Frameworks"],
       status: "פרויקט אקדמי שהושלם",
-      image: "https://images.unsplash.com/photo-1639322537228-f710d846310a?auto=format&fit=crop&q=80&w=1000"
+      image: "https://images.unsplash.com/photo-1639322537228-f710d846310a?auto=format&fit=crop&q=80&w=1000",
+      githubUrl: "https://github.com/rondahan/DecisionLab"
     }
   ]
 };
 
-// Re-adding EXPERIENCE constant to fix the reported error in components/Experience.tsx
 export const EXPERIENCE: Record<Language, Experience[]> = {
   en: [
     {

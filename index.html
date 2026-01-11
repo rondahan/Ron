@@ -1,6 +1,6 @@
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,6 +8,10 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;900&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --mouse-x: 50%;
+            --mouse-y: 50%;
+        }
         body {
             font-family: 'Inter', 'Heebo', sans-serif;
             background-color: #020617; /* slate-950 */
@@ -21,25 +25,59 @@
             font-family: 'JetBrains Mono', monospace;
         }
         .glass {
-            background: rgba(15, 23, 42, 0.7);
-            backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
         }
-        .glow-blue {
-            box-shadow: 0 0 20px rgba(59, 130, 246, 0.3);
+        .glow-cursor {
+            background: radial-gradient(600px circle at var(--mouse-x) var(--mouse-y), rgba(59, 130, 246, 0.06), transparent 40%);
+            pointer-events: none;
+            position: fixed;
+            inset: 0;
+            z-index: 1;
+        }
+        .reveal {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+        .animate-float {
+            animation: float 4s ease-in-out infinite;
+        }
+        .project-card:hover .shine {
+            left: 125%;
+            transition: all 0.7s ease;
+        }
+        .shine {
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 50%;
+            height: 100%;
+            background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.05), transparent);
+            transform: skewX(-25deg);
         }
         ::-webkit-scrollbar {
-            width: 8px;
+            width: 6px;
         }
         ::-webkit-scrollbar-track {
             background: #020617;
         }
         ::-webkit-scrollbar-thumb {
-            background: #1e293b;
+            background: #334155;
             border-radius: 10px;
         }
         ::-webkit-scrollbar-thumb:hover {
-            background: #334155;
+            background: #475569;
         }
     </style>
 <script type="importmap">
@@ -56,5 +94,12 @@
 </head>
 <body>
     <div id="root"></div>
+    <script>
+        document.addEventListener('mousemove', (e) => {
+            const root = document.documentElement;
+            root.style.setProperty('--mouse-x', e.clientX + 'px');
+            root.style.setProperty('--mouse-y', e.clientY + 'px');
+        });
+    </script>
 </body>
 </html>

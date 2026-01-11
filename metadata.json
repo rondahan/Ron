@@ -1,7 +1,5 @@
 {
   "name": "Ron Dahan - AI Portfolio & RonAI Assistant",
   "description": "A high-end professional portfolio for Ron Dahan, featuring an interactive AI chatbot 'RonAI' trained on his professional background, a dynamic tech stack visualization, and a detailed showcase of AI/ML projects.",
-  "requestFramePermissions": [
-    "microphone"
-  ]
+  "requestFramePermissions": []
 }
