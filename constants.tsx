@@ -49,20 +49,20 @@ export const TRANSLATIONS = {
       footer: "I don't just use tools; I architect ecosystems that enable them to perform at peak capacity."
     },
     charlie: {
-      title: "Charlie - Your Personal Assistant",
-      subtitle: "Ron's digital twin with a personality. Ask him anything—he’s a gossip.",
-      badge: "Witty Memory Active",
+      title: "Charlie - Assistant",
+      subtitle: "Ron's digital twin. Ask him anything.",
+      badge: "Recruitment Mode Active",
       status: "Ready for tea ☕",
-      initial: "Hi, I'm Charlie, Ron's personal assistant! I know everything about him—ask me anything, I really do know it all! 😉",
+      initial: "Hi, I'm Charlie, Ron's personal assistant, and I know everything about him... yes, yes, I even have his CV ready! 😉",
       placeholder: "Ask Charlie anything you want...",
       clear: "Reset conversation?",
       memory: "Turns in memory",
       sources: "Source",
       suggestions: [
-        "What's Ron's main expertise?",
-        "Tell me about DecisionLab.",
-        "What AI tools does he use most?",
-        "How can I hire him?"
+        "Can I see your CV?",
+        "What's your AI expertise?",
+        "Tell me about your M.Sc.",
+        "How can I hire you?"
       ]
     },
     experience: {
@@ -104,20 +104,20 @@ export const TRANSLATIONS = {
       footer: "אני לא רק משתמש בכלים; אני מתכנן מערכות שמאפשרות להם למצות את מלוא הפוטנציאל שלהם."
     },
     charlie: {
-      title: "צ'ארלי - העוזר האישי שלך",
-      subtitle: "התאום הדיגיטלי של רון. שנון, חכם וקצת חסר מעצורים. תשאלו אותו הכל.",
-      badge: "זיכרון פעיל",
+      title: "צ'ארלי - העוזר האישי",
+      subtitle: "התאום הדיגיטלי של רון. תשאלו אותו הכל.",
+      badge: "מצב גיוס פעיל",
       status: "מוכן לתה ☕",
-      initial: "היי, אני צ'ארלי, העוזר האישי של רון! אני מכיר אותו הכי טוב שאפשר - מוזמנים לשאול אותי הכל, אני לא שומר סודות 😉",
+      initial: "היי, אני צ'ארלי, העוזר האישי של רון ואני יודע עליו הכל... כן כן, אפילו את קורות החיים שלו יש לי מוכנים לשליפה! 😉",
       placeholder: "תשאלו את צ'ארלי משהו...",
       clear: "לאפס שיחה?",
       memory: "תורות בזיכרון",
       sources: "מקור",
       suggestions: [
-        "מה המומחיות העיקרית של רון?",
-        "ספר לי על DecisionLab.",
-        "באילו כלי AI הוא משתמש?",
-        "איך אפשר ליצור איתו קשר?"
+        "אפשר לראות קורות חיים?",
+        "מה המומחיות שלך ב-AI?",
+        "ספר לי על התואר השני.",
+        "איך אפשר ליצור איתך קשר?"
       ]
     },
     experience: {
@@ -138,10 +138,13 @@ export const TRANSLATIONS = {
 export const RON_DATA = {
   name: "Ron Dahan",
   nameHe: "רון דהן",
-  titles: ["AI Developer", "ML Researcher"],
-  titlesHe: ["מפתח בינה מלאכותית", "חוקר למידת מכונה"],
-  bio: "AI/ML Engineer with a genuine passion for machine learning and artificial intelligence. I'm constantly exploring new advancements and thinking about creative ways to apply them to real-world challenges.",
-  bioHe: "מהנדס AI/ML עם תשוקה אמיתית לתחום. אני חוקר ללא הרף פיתוחים חדשים ומחפש דרכים יצירתיות ליישם אותם כדי לפתור אתגרים מורכבים.",
+  age: 27,
+  location: "Ashdod, Israel",
+  locationHe: "אשדוד, ישראל",
+  titles: ["AI Developer", "ML Researcher", "Full-Stack Engineer"],
+  titlesHe: ["מפתח בינה מלאכותית", "חוקר למידת מכונה", "מהנדס Full-Stack"],
+  bio: "AI Developer with hands-on experience building production-grade AI systems, RAG pipelines, and AI agents. 27 years old from Ashdod, with a strong background in hardware and two degrees in CS.",
+  bioHe: "מפתח AI עם ניסיון מעשי בבניית מערכות בינה מלאכותית ברמת ייצור, RAG וסוכנים. בן 27 מאשדוד, עם רקע עשיר בחומרה ושני תארים במדעי המחשב.",
   email: "rondahan124@gmail.com",
   linkedin: "https://www.linkedin.com/in/ron-dahan-developer/",
   github: "https://github.com/rondahan",
@@ -172,6 +175,97 @@ export const PROJECTS: Record<Language, Project[]> = {
       status: "פרויקט אקדמי שהושלם",
       image: "https://images.unsplash.com/photo-1639322537228-f710d846310a?auto=format&fit=crop&q=80&w=1000",
       githubUrl: "https://github.com/rondahan/DecisionLab"
+    }
+  ]
+};
+
+export const EXPERIENCE: Record<Language, Experience[]> = {
+  en: [
+    {
+      role: "AI Freelance Developer",
+      company: "Independent / AI Solutions",
+      period: "2025 - Present",
+      description: [
+        "Specializing in AI Agents and autonomous reasoning workflows.",
+        "Developing advanced RAG (Retrieval-Augmented Generation) architectures.",
+        "Custom LLM API integrations and specialized prompt engineering."
+      ],
+      skills: ["AI Agents", "RAG", "LLMs", "Autonomous Workflows"]
+    },
+    {
+      role: "AI Developer (Intern)",
+      company: "Partix.ai",
+      period: "2025",
+      description: [
+        "Developed and deployed AI-driven features in production environments.",
+        "Integrated AI Agents using Mastra and complex API ecosystems.",
+        "Built scalable RAG pipelines with vector databases."
+      ],
+      skills: ["AI Production", "Mastra", "TypeScript", "Python"]
+    },
+    {
+      role: "M.Sc. in Computer Science",
+      company: "Ashkelon Academic College",
+      period: "2022 - 2024",
+      description: [
+        "Advanced research in Machine Learning and Neural Architectures.",
+        "Focus on systemic reasoning and statistical model evaluation."
+      ],
+      skills: ["Machine Learning", "Research", "Statistics"]
+    },
+    {
+      role: "B.Sc. in Computer Science",
+      company: "Ashkelon Academic College",
+      period: "2020 - 2023",
+      description: [
+        "Fundamental algorithms, complex data structures, and computer logic.",
+        "Full-stack development foundations and software architecture."
+      ],
+    skills: ["Algorithms", "Logic", "Computer Science"]
+    }
+  ],
+  he: [
+    {
+      role: "מפתח AI פרילנס",
+      company: "עצמאי / פתרונות בינה מלאכותית",
+      period: "2025 - נוכחי",
+      description: [
+        "התמחות בסוכני AI (AI Agents) ותהליכי חשיבה אוטונומיים.",
+        "פיתוח ארכיטקטורות RAG מתקדמות לאחזור מידע.",
+        "אינטגרציה של LLM APIs והנדסת פרומפטים מורכבת."
+      ],
+      skills: ["AI Agents", "RAG", "LLMs", "Autonomous Workflows"]
+    },
+    {
+      role: "מפתח AI (Intern)",
+      company: "פארטיקס (Partix.ai)",
+      period: "2025",
+      description: [
+        "פיתוח ופריסת פיצ'רים מבוססי AI בסביבת ייצור.",
+        "הטמעת סוכני AI באמצעות Mastra ואינטגרציה של LLM APIs.",
+        "בניית צינורות RAG עם מסדי נתונים וקטוריים."
+      ],
+      skills: ["AI Production", "Mastra", "TypeScript", "Python"]
+    },
+    {
+      role: "תואר שני (M.Sc.) במדעי המחשב",
+      company: "המכללה האקדמית אשקלון",
+      period: "2022 - 2024",
+      description: [
+        "מחקר מתקדם בלמידת מכונה וארכיטקטורות עצביות.",
+        "דגש על חשיבה מערכתית והערכת מודלים סטטיסטיים."
+      ],
+      skills: ["Machine Learning", "Research", "Statistics"]
+    },
+    {
+      role: "תואר ראשון (B.Sc.) במדעי המחשב",
+      company: "המכללה האקדמית אשקלון",
+      period: "2020 - 2023",
+      description: [
+        "לימודי ליבה באלגוריתמים, מבני נתונים ולוגיקה חישובית.",
+        "יסודות פיתוח Full-stack וארכיטקטורת תוכנה."
+      ],
+      skills: ["אלגוריתמים", "לוגיקה", "מדעי המחשב"]
     }
   ]
 };
@@ -209,7 +303,7 @@ export const TECH_STACK_DETAILS: Record<string, TechTool[]> = {
     { name: "Apify", description: "Cloud platform for sophisticated data agents.", descriptionHe: "פלטפורמת ענן לסוכני נתונים מתוחכמים.", brandColor: "#323130", logoUrl: "https://apify.com/favicon.ico" }
   ],
   "Data & Databases": [
-    { name: "PostgreSQL", description: "Robust relational database for structured AI data.", descriptionHe: "מסד נתונים רלציוני לנתוני AI מובנים.", brandColor: "#336791", logoUrl: "https://cdn.simpleicons.org/postgresql/336791" },
+    { name: "PostgreSQL", description: "Robust relational database for structured AI data.", descriptionHe: "שפת שאילתות למסד נתונים רלציוני.", brandColor: "#336791", logoUrl: "https://cdn.simpleicons.org/postgresql/336791" },
     { name: "MongoDB", description: "NoSQL store for unstructured AI knowledge bases.", descriptionHe: "מאגר NoSQL לבסיסי ידע של AI.", brandColor: "#47a248", logoUrl: "https://cdn.simpleicons.org/mongodb/47A248" },
     { name: "Redis", description: "In-memory performance for agent memory management.", descriptionHe: "ביצועים בזיכרון לניהול זיכרון סוכנים.", brandColor: "#d82c20", logoUrl: "https://cdn.simpleicons.org/redis/DC382D" },
     { name: "Turso", description: "Distributed SQLite built for low-latency edge data.", descriptionHe: "מסד נתונים SQLite מבוזר לשיהוי נמוך.", brandColor: "#4fd1c5", logoUrl: "https://turso.tech/favicon.ico" },
@@ -264,95 +358,4 @@ export const GET_CATEGORIES = (lang: Language) => {
       items: TECH_STACK_DETAILS[key]
     };
   });
-};
-
-export const EXPERIENCE: Record<Language, Experience[]> = {
-  en: [
-    {
-      role: "AI Developer & ML Researcher",
-      company: "Independent / Specialized Consulting",
-      period: "2025 - Present",
-      description: [
-        "Architecting production-ready RAG systems with long-context optimization.",
-        "Developing autonomous multi-agent swarms for complex task execution.",
-        "Implementing high-speed fine-tuning for open-source LLMs."
-      ],
-      skills: ["Gemini API", "Python", "LangChain", "CrewAI", "PyTorch"]
-    },
-    {
-      role: "AI Developer",
-      company: "Partix",
-      period: "2025",
-      description: [
-        "Developing scalable AI solutions and neural-based features for high-traffic environments.",
-        "Integrating LLM-driven workflows to enhance operational intelligence."
-      ],
-      skills: ["AI Engineering", "Production Deployment", "LLM Integration"]
-    },
-    {
-      role: "Machine Learning Research (M.Sc.)",
-      company: "Academic Institution",
-      period: "2023 - 2024",
-      description: [
-        "In-depth research into advanced Machine Learning models and optimization as part of Master's degree.",
-        "Focus on structured reasoning frameworks and neural architectures.",
-        "Completed a Master of Science in Computer Science specializing in ML."
-      ],
-      skills: ["Deep Learning", "Neural Architectures", "Statistical Analysis"]
-    },
-    {
-      role: "B.Sc. in Computer Science",
-      company: "Academic Institution",
-      period: "Completed",
-      description: [
-        "Foundation of computer science, algorithms, and complex systems.",
-        "Bachelor of Science degree in Computer Science."
-      ],
-    skills: ["Algorithms", "Data Structures", "System Design"]
-    }
-  ],
-  he: [
-    {
-      role: "מפתח AI וחוקר ML",
-      company: "עצמאי / ייעוץ מומחה",
-      period: "2025 - נוכחי",
-      description: [
-        "תכנון מערכות RAG מוכנות לייצור עם אופטימיזציה להקשר ארוך.",
-        "פיתוח נחילי סוכנים אוטונומיים לביצוע משימות מורכבות.",
-        "הטמעת כוונון עדין מהיר למודלי שפה בקוד פתוח."
-      ],
-      skills: ["Gemini API", "Python", "LangChain", "CrewAI", "PyTorch"]
-    },
-    {
-      role: "מפתח AI",
-      company: "פארטיקס (Partix)",
-      period: "2025",
-      description: [
-        "פיתוח פתרונות AI מבוססי מודלים מתקדמים לסביבות עבודה מורכבות.",
-        "אינטגרציה של כלי בינה מלאכותית לייעול ושיפור חוויית המשתמש."
-      ],
-      skills: ["AI Engineering", "Software Systems", "LLM Deployment"]
-    },
-    {
-      role: "מחקר למידת מכונה (כחלק מהתואר השני)",
-      company: "מוסד אקדמי",
-      period: "2023 - 2024",
-      description: [
-        "מחקר מעמיק במודלי למידת מכונה ואופטימיזציה כחלק מלימודי התואר השני.",
-        "התמקדות במסגרות חשיבה מובנות וארכיטקטורות נוירוניות.",
-        "השלמת תואר שני (M.Sc.) במדעי המחשב עם התמחות ב-ML."
-      ],
-      skills: ["Deep Learning", "Research Methodology", "Machine Learning"]
-    },
-    {
-      role: "תואר ראשון (B.Sc.) במדעי המחשב",
-      company: "מוסד אקדמי",
-      period: "הושלם",
-      description: [
-        "לימודי ליבה במדעי המחשב, אלגוריתמיקה ומערכות מורכבות.",
-        "בוגר תואר ראשון (B.Sc.) במדעי המחשב."
-      ],
-      skills: ["Algorithms", "Complex Systems", "Software Engineering"]
-    }
-  ]
 };

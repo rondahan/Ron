@@ -1,6 +1,6 @@
 
 import React, { useState, useRef, useEffect } from 'react';
-import { Send, User, Trash2, X, Terminal, Activity, Bot, Zap } from 'lucide-react';
+import { Send, User, Trash2, X, Terminal, Activity, Bot, Zap, Cpu } from 'lucide-react';
 import { getRonAIResponse } from '../services/gemini';
 import { ChatMessage } from '../types';
 import { Language, TRANSLATIONS } from '../constants';
@@ -18,47 +18,49 @@ const isRTLText = (text: string) => {
 const NeuralSphere = ({ isTyping, size = "large" }: { isTyping: boolean, size?: "small" | "large" }) => {
   const isSmall = size === "small";
   const containerSize = isSmall ? "w-10 h-10" : "w-20 h-20";
-  const innerSize = isSmall ? "w-8 h-8" : "w-14 h-14";
-  const iconSize = isSmall ? "w-4 h-4" : "w-7 h-7";
+  const innerSize = isSmall ? "w-8 h-8" : "w-16 h-16";
+  
+  // High-fidelity AI Robot Head - Reliable URL
+  const aiAvatarUrl = "https://images.unsplash.com/photo-1620712943543-bcc4688e7485?q=80&w=400&h=400&auto=format&fit=crop";
 
   return (
     <div className={`relative ${containerSize} flex items-center justify-center group`}>
-      {/* Outer Glow / Atmosphere */}
-      <div className={`absolute inset-0 rounded-full bg-blue-500 blur-xl transition-all duration-1000 ${
-        isTyping ? 'scale-125 opacity-40 animate-pulse' : 'scale-100 opacity-20'
+      {/* Outer Atmospheric Glow */}
+      <div className={`absolute inset-0 rounded-full bg-cyan-500 blur-2xl transition-all duration-1000 ${
+        isTyping ? 'scale-150 opacity-50 animate-pulse' : 'scale-100 opacity-20'
       }`}></div>
       
-      {/* Dynamic Rings */}
-      <div className={`absolute inset-0 border border-blue-500/30 rounded-full animate-spin-slow ${isTyping ? '[animation-duration:3s]' : '[animation-duration:8s]'}`}></div>
-      <div className={`absolute -inset-1 border border-emerald-500/20 rounded-full animate-spin-slow ${isTyping ? '[animation-duration:2s]' : '[animation-duration:12s]'} direction-reverse`}></div>
+      {/* Dynamic Energy Rings */}
+      <div className={`absolute inset-0 border-2 border-cyan-400/20 rounded-full animate-spin-slow ${isTyping ? '[animation-duration:3s]' : '[animation-duration:10s]'}`}></div>
+      <div className={`absolute -inset-1 border border-emerald-400/10 rounded-full animate-spin-slow direction-reverse ${isTyping ? '[animation-duration:5s]' : '[animation-duration:15s]'}`}></div>
 
-      {/* Main Core */}
-      <div className={`relative z-10 ${innerSize} rounded-full border border-white/20 overflow-hidden flex items-center justify-center bg-slate-950 shadow-inner group-hover:scale-110 transition-transform duration-500`}>
-        {/* Animated Gradient Background */}
-        <div className={`absolute inset-0 bg-gradient-to-br from-blue-600/30 via-transparent to-emerald-500/30 animate-pulse ${isTyping ? 'opacity-100' : 'opacity-50'}`}></div>
+      {/* Main Core - The Robot Avatar */}
+      <div className={`relative z-10 ${innerSize} rounded-full border-2 border-white/20 overflow-hidden flex items-center justify-center bg-slate-900 shadow-[0_0_20px_rgba(34,211,238,0.3)] group-hover:scale-105 transition-transform duration-500`}>
+        {/* The Robot Head Image - Removed mix-blend for clarity */}
+        <img 
+          src={aiAvatarUrl} 
+          alt="Charlie AI Avatar"
+          className={`w-full h-full object-cover transition-all duration-700 ${
+            isTyping ? 'scale-115 brightness-125 saturate-150' : 'scale-110 brightness-110 animate-float'
+          }`}
+        />
+
+        {/* Scanline / Holographic Overlay */}
+        <div className="absolute inset-0 pointer-events-none bg-[linear-gradient(transparent_50%,rgba(0,255,255,0.05)_50%)] bg-[length:100%_4px] animate-scanline opacity-30"></div>
         
-        {/* Floating Particles SVG Effect */}
-        <svg className="absolute inset-0 w-full h-full opacity-40" viewBox="0 0 100 100">
-          <circle cx="20" cy="20" r="1" fill="white" className={`animate-ping ${isTyping ? 'duration-700' : 'duration-[3000ms]'}`} />
-          <circle cx="80" cy="30" r="1.5" fill="white" className={`animate-pulse ${isTyping ? 'duration-500' : 'duration-[4000ms]'}`} />
-          <circle cx="40" cy="70" r="1" fill="white" className={`animate-bounce ${isTyping ? 'duration-1000' : 'duration-[5000ms]'}`} />
-        </svg>
-
-        {/* Central Intelligence Icon */}
-        <div className="relative z-20">
-          {isTyping ? (
-            <Zap className={`${iconSize} text-blue-400 animate-pulse`} />
-          ) : (
-            <Activity className={`${iconSize} text-blue-400 opacity-80`} />
-          )}
-        </div>
+        {/* Thinking State Overlay */}
+        {isTyping && (
+          <div className="absolute inset-0 bg-cyan-500/20 flex items-center justify-center backdrop-blur-[1px]">
+            <Zap className="w-1/2 h-1/2 text-cyan-200 animate-pulse drop-shadow-[0_0_8px_rgba(34,211,238,1)]" />
+          </div>
+        )}
+        
+        {/* Subtle Gradient for depth */}
+        <div className="absolute inset-0 bg-gradient-to-t from-slate-950/60 via-transparent to-transparent"></div>
       </div>
 
-      {/* Internal Orbitals (SVG) */}
-      <svg className={`absolute inset-0 w-full h-full pointer-events-none transition-opacity duration-500 ${isTyping ? 'opacity-100' : 'opacity-40'}`} viewBox="0 0 100 100">
-        <ellipse cx="50" cy="50" rx="45" ry="15" fill="none" stroke="currentColor" strokeWidth="0.5" className="text-blue-500/30 animate-spin-slow" style={{ animationDuration: isTyping ? '2s' : '5s' }} />
-        <ellipse cx="50" cy="50" rx="15" ry="45" fill="none" stroke="currentColor" strokeWidth="0.5" className="text-emerald-500/30 animate-spin-slow" style={{ animationDuration: isTyping ? '3s' : '7s' }} />
-      </svg>
+      {/* Pulsing Orbit Dots */}
+      <div className={`absolute w-1.5 h-1.5 bg-cyan-300 rounded-full blur-[0.5px] animate-orbit shadow-[0_0_5px_#22d3ee] ${isTyping ? 'opacity-100' : 'opacity-60'}`}></div>
     </div>
   );
 };
@@ -102,18 +104,21 @@ const Chatbot: React.FC<ChatbotProps> = ({ lang }) => {
   return (
     <div className={`fixed ${isRtlUI ? 'left-6 md:left-12' : 'right-6 md:right-12'} bottom-8 z-[1000] flex flex-col items-end pointer-events-none`} dir={isRtlUI ? 'rtl' : 'ltr'}>
       {/* HUD Chat Window */}
-      <div className={`hologram-card rounded-[2rem] shadow-2xl flex flex-col h-[70vh] w-[90vw] sm:w-[450px] transition-all duration-700 origin-bottom-${isRtlUI ? 'left' : 'right'} mb-6 pointer-events-auto border-none ${
+      <div className={`hologram-card rounded-[2.5rem] shadow-2xl flex flex-col h-[70vh] w-[90vw] sm:w-[450px] transition-all duration-700 origin-bottom-${isRtlUI ? 'left' : 'right'} mb-6 pointer-events-auto border-none ${
         isMinimized ? 'opacity-0 scale-90 translate-y-20 hidden' : 'opacity-100 scale-100 translate-y-0'
       }`}>
         {/* Header HUD */}
-        <div className="p-6 border-b border-white/10 flex items-center justify-between bg-blue-600/5">
+        <div className="p-6 border-b border-cyan-500/20 flex items-center justify-between bg-cyan-600/5">
           <div className="flex items-center gap-4">
             <NeuralSphere isTyping={isTyping} size="small" />
             <div className={isRtlUI ? 'text-right' : 'text-left'}>
-              <h3 className="font-bold text-white text-sm tracking-tight">{t.title}</h3>
+              <h3 className="font-bold text-white text-sm tracking-tight flex items-center gap-2">
+                {t.title}
+                <div className="px-1.5 py-0.5 bg-cyan-500/20 text-cyan-400 text-[8px] border border-cyan-500/30 rounded font-mono">NEURAL_V3</div>
+              </h3>
               <div className="flex items-center gap-2 mt-0.5">
-                <span className="w-1.5 h-1.5 bg-emerald-500 rounded-full animate-pulse shadow-[0_0_8px_#10b981]"></span>
-                <span className="text-[9px] text-emerald-400 font-mono font-bold uppercase tracking-widest">System Active</span>
+                <span className="w-1.5 h-1.5 bg-cyan-500 rounded-full animate-pulse shadow-[0_0_8px_#22d3ee]"></span>
+                <span className="text-[9px] text-cyan-400 font-mono font-bold uppercase tracking-widest">Interface Stream: Online</span>
               </div>
             </div>
           </div>
@@ -125,26 +130,30 @@ const Chatbot: React.FC<ChatbotProps> = ({ lang }) => {
           </div>
         </div>
 
-        {/* Console Output */}
+        {/* Chat Area */}
         <div className="flex-grow overflow-y-auto p-6 space-y-6 no-scrollbar bg-slate-950/80">
           {messages.map((msg, i) => {
             const isRTL = isRTLText(msg.content);
             return (
               <div key={i} className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}>
                   <div 
-                    className={`max-w-[85%] p-4 rounded-2xl text-sm leading-relaxed transition-all ${
+                    className={`max-w-[85%] p-4 rounded-2xl text-sm leading-relaxed transition-all relative ${
                       msg.role === 'user' 
-                      ? 'bg-blue-600 text-white rounded-br-none shadow-lg' 
+                      ? 'bg-blue-600 text-white rounded-br-none shadow-lg shadow-blue-500/10' 
                       : 'bg-white/5 border border-white/10 text-slate-200 rounded-bl-none'
                     } ${isRTL ? 'text-right' : 'text-left'}`}
                     dir={isRTL ? 'rtl' : 'ltr'}
                     style={{ fontFamily: isRTL ? 'Assistant, Inter, sans-serif' : 'Inter, Assistant, sans-serif' }}
                   >
+                      {msg.role === 'assistant' && (
+                        <div className="absolute inset-0 pointer-events-none opacity-[0.03] bg-[radial-gradient(#22d3ee_1px,transparent_1px)] bg-[size:12px_12px] rounded-2xl"></div>
+                      )}
+                      
                       <div className={`flex items-center gap-2 mb-1.5 opacity-60 text-[9px] uppercase font-bold tracking-wider font-mono ${isRTL ? 'flex-row-reverse' : 'flex-row'}`}>
                           {msg.role === 'user' ? <User className="w-2.5 h-2.5" /> : <Terminal className="w-2.5 h-2.5" />}
                           <span>{msg.role} // {msg.timestamp.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})}</span>
                       </div>
-                      <div className="font-medium whitespace-pre-wrap break-words">
+                      <div className="font-medium whitespace-pre-wrap break-words relative z-10">
                         {msg.content}
                       </div>
                   </div>
@@ -153,19 +162,20 @@ const Chatbot: React.FC<ChatbotProps> = ({ lang }) => {
           })}
           {isTyping && (
             <div className="flex justify-start">
-              <div className="bg-white/5 border border-white/10 p-3 rounded-xl rounded-bl-none flex gap-2 items-center">
-                <div className="w-1.5 h-1.5 bg-blue-500 rounded-full animate-bounce"></div>
-                <div className="w-1.5 h-1.5 bg-blue-500 rounded-full animate-bounce delay-100"></div>
-                <div className="w-1.5 h-1.5 bg-blue-500 rounded-full animate-bounce delay-200"></div>
+              <div className="bg-cyan-500/5 border border-cyan-500/20 p-3 rounded-xl rounded-bl-none flex gap-2 items-center">
+                <div className="w-1.5 h-1.5 bg-cyan-400 rounded-full animate-bounce"></div>
+                <div className="w-1.5 h-1.5 bg-cyan-400 rounded-full animate-bounce delay-100"></div>
+                <div className="w-1.5 h-1.5 bg-cyan-400 rounded-full animate-bounce delay-200"></div>
+                <span className="text-[10px] font-mono text-cyan-400 ml-1 uppercase tracking-tighter">Thinking...</span>
               </div>
             </div>
           )}
           <div ref={messagesEndRef} />
         </div>
 
-        {/* Command Input Area */}
-        <div className="p-4 bg-slate-900 border-t border-white/10">
-          <form onSubmit={(e) => { e.preventDefault(); handleSend(); }} className="flex items-center gap-2 bg-slate-950 border border-white/10 rounded-2xl p-2 pr-2">
+        {/* Input HUD */}
+        <div className="p-4 bg-slate-900 border-t border-cyan-500/10">
+          <form onSubmit={(e) => { e.preventDefault(); handleSend(); }} className="flex items-center gap-2 bg-slate-950 border border-cyan-500/20 rounded-2xl p-2 pr-2">
             <input
               type="text"
               value={input}
@@ -177,7 +187,7 @@ const Chatbot: React.FC<ChatbotProps> = ({ lang }) => {
             <button 
               type="submit"
               disabled={!input.trim() || isTyping}
-              className="p-3 bg-blue-600 hover:bg-blue-500 text-white rounded-xl transition-all active:scale-95 disabled:opacity-30 disabled:hover:bg-blue-600 shadow-lg shadow-blue-500/20"
+              className="p-3 bg-cyan-600 hover:bg-cyan-500 text-white rounded-xl transition-all active:scale-95 disabled:opacity-30 shadow-lg shadow-cyan-500/20"
             >
               <Send className="w-4 h-4" />
             </button>
@@ -185,7 +195,7 @@ const Chatbot: React.FC<ChatbotProps> = ({ lang }) => {
         </div>
       </div>
 
-      {/* Floating Toggle */}
+      {/* Floating Avatar Trigger */}
       <div 
         onClick={() => setIsMinimized(!isMinimized)}
         className={`pointer-events-auto cursor-pointer transition-all duration-500 hover:scale-110 active:scale-95 ${isMinimized ? 'opacity-100 scale-100' : 'opacity-0 scale-50'}`}
