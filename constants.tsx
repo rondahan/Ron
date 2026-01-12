@@ -143,11 +143,16 @@ export const RON_DATA = {
   locationHe: "אשדוד, ישראל",
   titles: ["AI Developer", "ML Researcher", "Full-Stack Engineer"],
   titlesHe: ["מפתח בינה מלאכותית", "חוקר למידת מכונה", "מהנדס Full-Stack"],
-  bio: "AI Developer with hands-on experience building production-grade AI systems, RAG pipelines, and AI agents. 27 years old from Ashdod, with a strong background in hardware and two degrees in CS.",
-  bioHe: "מפתח AI עם ניסיון מעשי בבניית מערכות בינה מלאכותית ברמת ייצור, RAG וסוכנים. בן 27 מאשדוד, עם רקע עשיר בחומרה ושני תארים במדעי המחשב.",
+  bio: "AI Developer with hands-on experience building production-grade AI systems, RAG pipelines, and AI agents.",
+  bioHe: "מפתח AI עם ניסיון מעשי בבניית מערכות בינה מלאכותית ברמת ייצור, RAG וסוכני AI.",
   email: "rondahan124@gmail.com",
   linkedin: "https://www.linkedin.com/in/ron-dahan-developer/",
   github: "https://github.com/rondahan",
+  cvUrls: {
+    ai: "https://drive.google.com/file/d/1OWw3vF_GQjoQYFcZCPAv7th6WvLKzmlD/view?usp=drive_link",
+    ml: "https://drive.google.com/file/d/15JzVB7RsqEy5WOhnSThj0w7TiDBtjbpk/view?usp=drive_link",
+    fullstack: "https://drive.google.com/file/d/1Nc_9_cbm0rQdYee9tEeLeT8AcPV8OIFp/view?usp=drive_link"
+  }
 };
 
 export const PROJECTS: Record<Language, Project[]> = {

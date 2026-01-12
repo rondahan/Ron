@@ -15,6 +15,69 @@ const isRTLText = (text: string) => {
   return rtlChars.test(text);
 };
 
+// Helper to parse simple markdown links [title](url) and plain URLs
+const formatMessage = (text: string) => {
+  // Regex for Markdown links: [title](url)
+  const mdLinkRegex = /\[([^\]]+)\]\(([^)]+)\)/g;
+  const parts = [];
+  let lastIndex = 0;
+  let match;
+
+  while ((match = mdLinkRegex.exec(text)) !== null) {
+    // Add text before the match
+    if (match.index > lastIndex) {
+      parts.push(text.substring(lastIndex, match.index));
+    }
+    // Add the link
+    parts.push(
+      <a 
+        key={match.index} 
+        href={match[2]} 
+        target="_blank" 
+        rel="noopener noreferrer"
+        className="text-cyan-400 underline hover:text-cyan-300 font-bold transition-colors inline-flex items-center gap-1"
+      >
+        {match[1]}
+      </a>
+    );
+    lastIndex = mdLinkRegex.lastIndex;
+  }
+
+  // Add remaining text
+  if (lastIndex < text.length) {
+    const remaining = text.substring(lastIndex);
+    // Simple linkify for plain URLs
+    const urlRegex = /(https?:\/\/[^\s]+)/g;
+    const subParts = [];
+    let subLastIndex = 0;
+    let subMatch;
+
+    while ((subMatch = urlRegex.exec(remaining)) !== null) {
+      if (subMatch.index > subLastIndex) {
+        subParts.push(remaining.substring(subLastIndex, subMatch.index));
+      }
+      subParts.push(
+        <a 
+          key={subMatch.index} 
+          href={subMatch[1]} 
+          target="_blank" 
+          rel="noopener noreferrer"
+          className="text-cyan-400 underline hover:text-cyan-300 transition-colors"
+        >
+          {subMatch[1]}
+        </a>
+      );
+      subLastIndex = urlRegex.lastIndex;
+    }
+    if (subLastIndex < remaining.length) {
+      subParts.push(remaining.substring(subLastIndex));
+    }
+    parts.push(...subParts);
+  }
+
+  return parts.length > 0 ? parts : text;
+};
+
 const NeuralSphere = ({ isTyping, size = "large" }: { isTyping: boolean, size?: "small" | "large" }) => {
   const isSmall = size === "small";
   const containerSize = isSmall ? "w-10 h-10" : "w-20 h-20";
@@ -36,7 +99,7 @@ const NeuralSphere = ({ isTyping, size = "large" }: { isTyping: boolean, size?: 
 
       {/* Main Core - The Robot Avatar */}
       <div className={`relative z-10 ${innerSize} rounded-full border-2 border-white/20 overflow-hidden flex items-center justify-center bg-slate-900 shadow-[0_0_20px_rgba(34,211,238,0.3)] group-hover:scale-105 transition-transform duration-500`}>
-        {/* The Robot Head Image - Removed mix-blend for clarity */}
+        {/* The Robot Head Image */}
         <img 
           src={aiAvatarUrl} 
           alt="Charlie AI Avatar"
@@ -154,7 +217,7 @@ const Chatbot: React.FC<ChatbotProps> = ({ lang }) => {
                           <span>{msg.role} // {msg.timestamp.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})}</span>
                       </div>
                       <div className="font-medium whitespace-pre-wrap break-words relative z-10">
-                        {msg.content}
+                        {formatMessage(msg.content)}
                       </div>
                   </div>
               </div>
