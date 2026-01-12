@@ -109,7 +109,7 @@ const Chatbot: React.FC<ChatbotProps> = ({ lang }) => {
         <div className="p-6 border-b border-white/10 flex items-center justify-between bg-blue-600/5">
           <div className="flex items-center gap-4">
             <NeuralSphere isTyping={isTyping} size="small" />
-            <div>
+            <div className={isRtlUI ? 'text-right' : 'text-left'}>
               <h3 className="font-bold text-white text-sm tracking-tight">{t.title}</h3>
               <div className="flex items-center gap-2 mt-0.5">
                 <span className="w-1.5 h-1.5 bg-emerald-500 rounded-full animate-pulse shadow-[0_0_8px_#10b981]"></span>
@@ -138,12 +138,13 @@ const Chatbot: React.FC<ChatbotProps> = ({ lang }) => {
                       : 'bg-white/5 border border-white/10 text-slate-200 rounded-bl-none'
                     } ${isRTL ? 'text-right' : 'text-left'}`}
                     dir={isRTL ? 'rtl' : 'ltr'}
+                    style={{ fontFamily: isRTL ? 'Assistant, Inter, sans-serif' : 'Inter, Assistant, sans-serif' }}
                   >
-                      <div className="flex items-center gap-2 mb-1.5 opacity-60 text-[9px] uppercase font-bold tracking-wider font-mono">
+                      <div className={`flex items-center gap-2 mb-1.5 opacity-60 text-[9px] uppercase font-bold tracking-wider font-mono ${isRTL ? 'flex-row-reverse' : 'flex-row'}`}>
                           {msg.role === 'user' ? <User className="w-2.5 h-2.5" /> : <Terminal className="w-2.5 h-2.5" />}
                           <span>{msg.role} // {msg.timestamp.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})}</span>
                       </div>
-                      <div className="font-sans font-medium whitespace-pre-wrap break-words">
+                      <div className="font-medium whitespace-pre-wrap break-words">
                         {msg.content}
                       </div>
                   </div>

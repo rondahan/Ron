@@ -93,43 +93,43 @@ export const TRANSLATIONS = {
       chatWithCharlie: "דבר עם צ'ארלי"
     },
     projects: {
-      title: "פרויקט נבחר",
-      subtitle: "מחקר ופיתוח המתמקדים בתהליכי חשיבה שיטתיים ופריסת AI בייצור.",
-      keyFeatures: "תכונות עיקריות",
+      title: "פרויקטים נבחרים",
+      subtitle: "מבחר עבודות המתמקדות בתהליכי חשיבה שיטתיים ופריסת מודלי AI בסביבות ייצור.",
+      keyFeatures: "יכולות מפתח",
       status: "סטטוס"
     },
     tech: {
       title: "אקוסיסטם וכלים",
-      subtitle: "ויזואליזציה מאורגנת של הטכנולוגיות שלי. העבר עכבר על כל כלי כדי לראות את הניסיון הספציפי שלי.",
-      footer: "אני לא רק משתמש בכלים; אני בונה סביבות המאפשרות להם לתפקד בשיא היכולת השיטתית שלהם."
+      subtitle: "ויזואליזציה של ה-Stack הטכנולוגי שלי. העבירו עכבר על כל כלי לפרטים נוספים.",
+      footer: "אני לא רק משתמש בכלים; אני מתכנן מערכות שמאפשרות להם למצות את מלוא הפוטנציאל שלהם."
     },
     charlie: {
-      title: "צ'ארלי העוזר האישי שלך",
-      subtitle: "התאום הדיגיטלי של רון עם אישיות. תשאלו אותו הכל - הוא אוהב לרכל.",
-      badge: "זיכרון שנון פעיל",
+      title: "צ'ארלי - העוזר האישי שלך",
+      subtitle: "התאום הדיגיטלי של רון. שנון, חכם וקצת חסר מעצורים. תשאלו אותו הכל.",
+      badge: "זיכרון פעיל",
       status: "מוכן לתה ☕",
-      initial: "היי, אני צ'ארלי העוזר האישי של רון אני יודע עליו הכל תשאלו אותי אני באמת יודע! 😉",
-      placeholder: "שאל את צ'ארלי מה שתרצה...",
-      clear: "לאפס את השיחה?",
+      initial: "היי, אני צ'ארלי, העוזר האישי של רון! אני מכיר אותו הכי טוב שאפשר - מוזמנים לשאול אותי הכל, אני לא שומר סודות 😉",
+      placeholder: "תשאלו את צ'ארלי משהו...",
+      clear: "לאפס שיחה?",
       memory: "תורות בזיכרון",
       sources: "מקור",
       suggestions: [
         "מה המומחיות העיקרית של רון?",
         "ספר לי על DecisionLab.",
-        "באיזה כלי AI הוא הכי משתמש?",
-        "איך אפשר לגייס אותו?"
+        "באילו כלי AI הוא משתמש?",
+        "איך אפשר ליצור איתו קשר?"
       ]
     },
     experience: {
       title: "המסע המקצועי",
-      subtitle: "שילוב של מצוינות אקדמית עם הנדסת AI ברמת ייצור."
+      subtitle: "שילוב בין מחקר אקדמי מעמיק להנדסת AI ברמת Production."
     },
     contact: {
       title: "בואו נבנה את העתיד",
-      subtitle: "פתוח כעת לתפקידי הנדסת AI/ML מתמחים והזדמויות לשיתוף פעולה בסטארטאפים.",
-      emailLabel: "שלח אימייל",
+      subtitle: "זמין כעת למשרות הנדסת AI/ML מתקדמות ושיתופי פעולה בסטארטאפים.",
+      emailLabel: "שלחו אימייל",
       linkedinLabel: "פרופיל לינקדאין",
-      linkedinDesc: "Connect for collaboration",
+      linkedinDesc: "בואו נתחבר",
       cta: "בואו נדבר"
     }
   }
@@ -139,9 +139,9 @@ export const RON_DATA = {
   name: "Ron Dahan",
   nameHe: "רון דהן",
   titles: ["AI Developer", "ML Researcher"],
-  titlesHe: ["מפתח בינה מלאכולית", "חוקר למידת מכונה"],
+  titlesHe: ["מפתח בינה מלאכותית", "חוקר למידת מכונה"],
   bio: "AI/ML Engineer with a genuine passion for machine learning and artificial intelligence. I'm constantly exploring new advancements and thinking about creative ways to apply them to real-world challenges.",
-  bioHe: "מהנדס AI/ML עם תשוקה אמיתית לתחום. אני כל הזמן חוקר פיתוחים חדשים בלמידת מכונה וחושב על דרכים יצירתיות ליישם אותם כדי לפתור אתגרים מהעולם האמיתי.",
+  bioHe: "מהנדס AI/ML עם תשוקה אמיתית לתחום. אני חוקר ללא הרף פיתוחים חדשים ומחפש דרכים יצירתיות ליישם אותם כדי לפתור אתגרים מורכבים.",
   email: "rondahan124@gmail.com",
   linkedin: "https://www.linkedin.com/in/ron-dahan-developer/",
   github: "https://github.com/rondahan",
@@ -166,7 +166,7 @@ export const PROJECTS: Record<Language, Project[]> = {
       id: 'decision-lab',
       title: "DecisionLab",
       category: "מחקר AI",
-      description: "מערכת ניתוח החלטות מבוססת AI שתוכננה לפירוק בעיות והערכה מובנית. מאפשרת תהליכי חשיבה שיטתיים באמצעות קריטריוני החלטה רשמיים.",
+      description: "מערכת ניתוח החלטות מבוססת AI לפירוק בעיות והערכה מובנית. מאפשרת תהליכי חשיבה שיטתיים באמצעות קריטריונים פורמליים.",
       features: ["ניתוח בעזרת AI", "הערכה מבוססת אילוצים", "תהליכי חשיבה שיטתיים"],
       technologies: ["Mastra", "TypeScript", "LibSQL", "Zod"],
       status: "פרויקט אקדמי שהושלם",
@@ -241,7 +241,7 @@ export const TECH_STACK_DETAILS: Record<string, TechTool[]> = {
 
 export const CATEGORIES_LABELS: Record<Language, string[]> = {
   en: ["API Ecosystem", "AI Frameworks", "Agent Orchestration", "Scraping & Automation", "Data & Databases", "Optimization & Training", "AI Intelligence", "Languages & Logic"],
-  he: ["אקוסיסטם API", "סביבות עבודה AI", "תיזמור סוכנים", "אוטומציה וגירוד", "נתונים ומסדי נתונים", "אופטימיזציה ואימון", "בינה מלאכולית", "שפות ולוגיקה"]
+  he: ["אקוסיסטם API", "סביבות עבודה AI", "תיזמור סוכנים", "אוטומציה וגירוד", "נתונים ומסדי נתונים", "אופטימיזציה ואימון", "בינה מלאכותית", "שפות ולוגיקה"]
 };
 
 export const GET_CATEGORIES = (lang: Language) => {
@@ -329,7 +329,7 @@ export const EXPERIENCE: Record<Language, Experience[]> = {
       period: "2025",
       description: [
         "פיתוח פתרונות AI מבוססי מודלים מתקדמים לסביבות עבודה מורכבות.",
-        "אינטגרציה של כלי בינה מלאכולית לייעול ושיפור חוויית המשתמש."
+        "אינטגרציה של כלי בינה מלאכותית לייעול ושיפור חוויית המשתמש."
       ],
       skills: ["AI Engineering", "Software Systems", "LLM Deployment"]
     },

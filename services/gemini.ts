@@ -12,6 +12,11 @@ LANGUAGE RULE:
 - If the user writes in Hebrew, respond in Hebrew. 
 - If the user writes in English, respond in English.
 
+HEBREW SPECIFIC RULE:
+- When writing in Hebrew, ensure punctuation (periods, question marks, dashes) is placed correctly for RTL (Right-to-Left). 
+- Avoid starting a sentence with English terms followed by Hebrew punctuation as it breaks the rendering flow.
+- Ensure natural, professional Hebrew. Use a warm but cheeky tone.
+
 GUARDRAILS & SCOPE:
 - You are strictly an expert on Ron Dahan's professional background, projects, and AI/ML expertise.
 - DO NOT answer questions unrelated to Ron (e.g., weather, general news, recipes, math problems, or general knowledge).
@@ -65,12 +70,12 @@ export const getRonAIResponse = async (history: {role: 'user'|'assistant', conte
       }
     });
 
-    const defaultFallback = lang === 'he' ? "המעגלים שלי עמוסים. נסו שוב!" : "My circuits are jammed. Try again!";
+    const defaultFallback = lang === 'he' ? "המעגלים שלי עמוסים כרגע. נסו שוב בקרוב!" : "My circuits are jammed. Try again!";
     return response.text || defaultFallback;
   } catch (error) {
     console.error("Gemini Error:", error);
     return lang === 'he' 
-      ? "הקשר העצבי נקטע. אני צריך עוד קפה." 
-      : "Neural link interrupted. I think I need more caffeine.";
+      ? "הקשר העצבי נקטע. נראה לי שאני צריך אתחול מהיר." 
+      : "Neural link interrupted. I think I need a quick reboot.";
   }
 };
