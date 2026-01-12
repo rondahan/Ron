@@ -1,92 +1,116 @@
 
-import React, { useState } from 'react';
-import { GET_CATEGORIES, Language, TRANSLATIONS } from '../constants';
-import { Info, ExternalLink, Box } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { GET_CATEGORIES, Language, TRANSLATIONS, TechTool } from '../constants';
+import { ChevronRight, ExternalLink } from 'lucide-react';
 
 interface TechStackProps {
   lang: Language;
 }
 
 const TechStack: React.FC<TechStackProps> = ({ lang }) => {
-  const [activeTooltip, setActiveTooltip] = useState<string | null>(null);
+  const [selectedTool, setSelectedTool] = useState<TechTool | null>(null);
+  const [isMobile, setIsMobile] = useState(false);
   const t = TRANSLATIONS[lang].tech;
   const categories = GET_CATEGORIES(lang);
 
-  const handleProjectClick = (projectId: string) => {
-    const element = document.getElementById(projectId);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-      element.classList.add('glow-blue');
-      setTimeout(() => element.classList.remove('glow-blue'), 2000);
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 768);
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
+  const handleToolAction = (tool: TechTool) => {
+    if (isMobile) {
+      setSelectedTool(selectedTool?.name === tool.name ? null : tool);
     }
   };
 
+  const handleMouseEnter = (tool: TechTool) => {
+    if (!isMobile) setSelectedTool(tool);
+  };
+
+  const handleMouseLeave = () => {
+    if (!isMobile) setSelectedTool(null);
+  };
+
   return (
-    <section id="stack" className="py-32 px-6 relative overflow-visible">
-      <div className="max-w-7xl mx-auto">
-        <div className="mb-24 text-center">
-          <h2 className="text-5xl font-black mb-6 tracking-tight">{t.title}</h2>
-          <p className="text-slate-400 max-w-2xl mx-auto text-lg font-medium">{t.subtitle}</p>
+    <section id="stack" className="py-24 px-4 bg-slate-50 dark:bg-slate-950">
+      <div className="max-w-6xl mx-auto">
+        <div className="mb-16 text-center">
+            <h2 className="text-4xl md:text-5xl font-extrabold text-slate-900 dark:text-white mb-4 tracking-tight uppercase">{t.title}</h2>
+            <p className="text-slate-600 dark:text-slate-400 max-w-2xl mx-auto text-lg">
+                {t.subtitle}
+            </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {categories.map((cat, idx) => (
             <div 
               key={idx} 
-              className="glass p-10 rounded-[2.5rem] border-white/5 hover:border-blue-500/30 transition-all group relative flex flex-col"
+              className="glass p-6 rounded-3xl flex flex-col group hover:shadow-xl transition-all duration-300 min-h-[300px]"
             >
-              <div className="flex items-center gap-5 mb-10">
-                <div className="w-14 h-14 bg-white/5 rounded-2xl flex items-center justify-center group-hover:scale-110 group-hover:bg-blue-600/20 transition-all duration-500 shadow-xl">
+              <div className="mb-6 flex items-center gap-3">
+                <div className="p-2.5 bg-blue-500/10 rounded-xl text-blue-600 dark:text-blue-400">
                   {cat.icon}
                 </div>
-                <h3 className="text-xl font-black tracking-tight">{cat.name}</h3>
+                <h3 className="font-bold text-slate-900 dark:text-white text-sm uppercase tracking-wide">
+                  {cat.name}
+                </h3>
               </div>
               
-              <div className="flex flex-wrap gap-3">
-                {cat.items.map(tool => (
-                  <div 
+              <div className="flex flex-wrap gap-2 mb-6">
+                {cat.items.map((tool) => (
+                  <button 
                     key={tool.name}
-                    className="relative group/tool"
-                    onMouseEnter={() => setActiveTooltip(tool.name)}
-                    onMouseLeave={() => setActiveTooltip(null)}
+                    onMouseEnter={() => handleMouseEnter(tool)}
+                    onMouseLeave={handleMouseLeave}
+                    onClick={() => handleToolAction(tool)}
+                    className={`group/btn px-3 py-1.5 rounded-xl text-xs font-semibold transition-all flex items-center gap-2 border shadow-sm ${
+                        selectedTool?.name === tool.name 
+                        ? 'bg-blue-600 text-white border-blue-600 shadow-md scale-105' 
+                        : 'bg-white dark:bg-white/5 text-slate-600 dark:text-slate-400 border-slate-200 dark:border-white/5 hover:border-blue-500/50'
+                    }`}
                   >
-                    <button 
-                      className={`px-4 py-2.5 bg-white/5 hover:bg-blue-600 text-slate-300 hover:text-white border border-white/5 hover:border-blue-500 rounded-xl text-xs font-bold transition-all flex items-center gap-2 shadow-lg ${tool.projectId ? 'cursor-pointer' : 'cursor-default'}`}
-                      onClick={() => tool.projectId && handleProjectClick(tool.projectId)}
-                    >
-                      {tool.name}
-                      {tool.projectId && <ExternalLink className="w-3 h-3 opacity-50" />}
-                    </button>
-
-                    <div className={`absolute bottom-full left-1/2 -translate-x-1/2 mb-4 w-72 p-5 bg-slate-900 border border-white/10 rounded-2xl shadow-[0_30px_60px_-15px_rgba(0,0,0,0.5)] z-50 pointer-events-none transition-all duration-300 origin-bottom ${activeTooltip === tool.name ? 'opacity-100 scale-100 translate-y-0' : 'opacity-0 scale-95 translate-y-2'}`}>
-                      <div className="flex items-start gap-3">
-                        <div className="p-2 bg-blue-600/20 rounded-lg">
-                          <Info className="w-4 h-4 text-blue-400" />
-                        </div>
-                        <div>
-                          <p className="text-sm font-medium text-slate-200 leading-relaxed">
-                            {lang === 'he' ? tool.descriptionHe : tool.description}
-                          </p>
-                          {tool.projectId && (
-                            <div className="mt-4 flex items-center gap-2 text-[10px] text-blue-400 font-black uppercase tracking-[0.2em] border-t border-white/5 pt-3">
-                              <Box className="w-3 h-3" />
-                              {lang === 'he' ? 'לחץ לצפייה בפרויקט' : 'Click to view project'}
-                            </div>
-                          )}
-                        </div>
-                      </div>
-                      <div className="absolute top-full left-1/2 -translate-x-1/2 border-[8px] border-transparent border-t-slate-900"></div>
-                    </div>
-                  </div>
+                    {tool.logoUrl && (
+                        <img src={tool.logoUrl} alt="" className="w-4 h-4 rounded-full group-hover/btn:scale-110 transition-transform" />
+                    )}
+                    {tool.name}
+                  </button>
                 ))}
+              </div>
+
+              {/* Tool Details Contextual Reveal */}
+              <div className="mt-auto pt-6 border-t border-slate-200 dark:border-white/10 h-24">
+                  {cat.items.some(t => t.name === selectedTool?.name) ? (
+                    <div className="animate-in fade-in slide-in-from-top-2">
+                        <div className="flex items-center gap-2 mb-2">
+                            <div className="w-1.5 h-1.5 rounded-full" style={{ backgroundColor: selectedTool?.brandColor || '#3b82f6' }}></div>
+                            <span className="text-[10px] font-bold uppercase text-slate-400">{lang === 'he' ? 'פרטי כלי' : 'Tool Specs'}</span>
+                        </div>
+                        <p className="text-xs leading-relaxed text-slate-600 dark:text-slate-300">
+                            {lang === 'he' ? selectedTool?.descriptionHe : selectedTool?.description}
+                        </p>
+                    </div>
+                  ) : (
+                    <p className="text-[10px] text-slate-400 dark:text-slate-500 italic">
+                        {lang === 'he' ? 'העבר עכבר לפרטים נוספים...' : 'Hover for more details...'}
+                    </p>
+                  )}
               </div>
             </div>
           ))}
         </div>
         
-        <div className="mt-24 glass p-10 rounded-[2.5rem] border-dashed border-slate-700 text-center relative overflow-hidden group">
-          <div className="absolute inset-0 bg-blue-600/5 opacity-0 group-hover:opacity-100 transition-opacity"></div>
-          <p className="text-slate-400 text-lg italic font-medium relative z-10">"{t.footer}"</p>
+        <div className="mt-20">
+          <div className="glass p-12 rounded-[2.5rem] text-center relative overflow-hidden">
+            <div className="absolute top-0 right-0 p-8 opacity-5">
+                <ChevronRight className="w-32 h-32 rotate-45" />
+            </div>
+            <p className="text-xl md:text-3xl font-semibold text-slate-800 dark:text-slate-200 italic max-w-3xl mx-auto leading-relaxed relative z-10">
+                "{t.footer}"
+            </p>
+          </div>
         </div>
       </div>
     </section>

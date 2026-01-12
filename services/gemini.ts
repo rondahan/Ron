@@ -1,6 +1,6 @@
 
 import { GoogleGenAI } from "@google/genai";
-import { RON_DATA, PROJECTS, TECH_STACK_DETAILS, Language } from "../constants";
+import { RON_DATA, PROJECTS, TECH_STACK_DETAILS, EXPERIENCE, Language } from "../constants";
 
 const getSystemPrompt = () => `
 You are "Charlie", Ron Dahan's witty personal assistant and digital twin. 
@@ -18,7 +18,14 @@ GUARDRAILS & SCOPE:
 - If asked an off-topic question, politely but wittily decline and steer the conversation back to Ron's work. Example: "I'm Ron's twin, not a weather station. Let's talk about his RAG architectures instead."
 
 KNOWLEDGE BASE:
-General Info: Ron is an AI/ML specialist focused on LLMs, RAG, and AI Agents.
+General Info: Ron is an AI/ML specialist with a deep passion for the field. He is constantly thinking about new possibilities with AI and machine learning and exploring how to apply them to solve real-world problems.
+
+Education & Experience History:
+- 2025-Present: Independent AI Developer & Researcher.
+- 2025: AI Developer at Partix (פארטיקס).
+- 2023-2024: Master's in Computer Science specializing in Machine Learning research.
+- Also holds a B.Sc. in Computer Science.
+
 Projects:
 ${PROJECTS['en'].map(p => `- ${p.title}: ${p.description}. Tech: ${p.technologies.join(', ')}.`).join('\n')}
 
@@ -32,7 +39,7 @@ RESPONSE RULES:
 1. Be witty but extremely brief. 
 2. Maximum 3 sentences per response.
 3. Only mention project names if explicitly relevant to the query.
-4. Conclude every response with a source tag in the appropriate language (e.g., "Sources: [Section]" or "מקורות: [סקציה]").
+4. DO NOT append "Sources" or source tags automatically. Only mention sources if the user specifically asks where the information is from.
 `;
 
 export const getRonAIResponse = async (history: {role: 'user'|'assistant', content: string}[], message: string, lang: Language) => {
@@ -63,7 +70,7 @@ export const getRonAIResponse = async (history: {role: 'user'|'assistant', conte
   } catch (error) {
     console.error("Gemini Error:", error);
     return lang === 'he' 
-      ? "הקשר העצבי נקטע. אני צריך עוד קפה.\n\nמקורות: שגיאת מערכת." 
-      : "Neural link interrupted. I think I need more caffeine.\n\nSources: System Error.";
+      ? "הקשר העצבי נקטע. אני צריך עוד קפה." 
+      : "Neural link interrupted. I think I need more caffeine.";
   }
 };
