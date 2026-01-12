@@ -39,7 +39,7 @@ RESPONSE RULES:
 1. Be witty but extremely brief. 
 2. Maximum 3 sentences per response.
 3. Only mention project names if explicitly relevant to the query.
-4. DO NOT append "Sources" or source tags automatically. Only mention sources if the user specifically asks where the information is from.
+4. ABSOLUTELY DO NOT mention sources, grounding metadata, or documentation links. Never append a "Sources" section to your message unless the user specifically asks "Where did you get this information from?".
 `;
 
 export const getRonAIResponse = async (history: {role: 'user'|'assistant', content: string}[], message: string, lang: Language) => {

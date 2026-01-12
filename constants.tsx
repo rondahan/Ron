@@ -49,12 +49,12 @@ export const TRANSLATIONS = {
       footer: "I don't just use tools; I architect ecosystems that enable them to perform at peak capacity."
     },
     charlie: {
-      title: "Charlie your personal assistant",
+      title: "Charlie - Your Personal Assistant",
       subtitle: "Ron's digital twin with a personality. Ask him anything—he’s a gossip.",
       badge: "Witty Memory Active",
       status: "Ready for tea ☕",
       initial: "Hi, I'm Charlie, Ron's personal assistant! I know everything about him—ask me anything, I really do know it all! 😉",
-      placeholder: "Ask Charlie what you want...",
+      placeholder: "Ask Charlie anything you want...",
       clear: "Reset conversation?",
       memory: "Turns in memory",
       sources: "Source",
@@ -139,7 +139,7 @@ export const RON_DATA = {
   name: "Ron Dahan",
   nameHe: "רון דהן",
   titles: ["AI Developer", "ML Researcher"],
-  titlesHe: ["מפתח בינה מלאכותית", "חוקר למידת מכונה"],
+  titlesHe: ["מפתח בינה מלאכולית", "חוקר למידת מכונה"],
   bio: "AI/ML Engineer with a genuine passion for machine learning and artificial intelligence. I'm constantly exploring new advancements and thinking about creative ways to apply them to real-world challenges.",
   bioHe: "מהנדס AI/ML עם תשוקה אמיתית לתחום. אני כל הזמן חוקר פיתוחים חדשים בלמידת מכונה וחושב על דרכים יצירתיות ליישם אותם כדי לפתור אתגרים מהעולם האמיתי.",
   email: "rondahan124@gmail.com",
