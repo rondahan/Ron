@@ -9,6 +9,7 @@ export interface Project {
   status: string;
   image: string;
   githubUrl?: string;
+  websiteUrl?: string;
 }
 
 export interface Experience {

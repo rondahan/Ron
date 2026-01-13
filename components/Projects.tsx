@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { PROJECTS, Language, TRANSLATIONS } from '../constants';
-import { ExternalLink, CheckCircle2, Github, Terminal, Layers } from 'lucide-react';
+import { ExternalLink, CheckCircle2, Github, Terminal, Layers, Globe } from 'lucide-react';
 
 interface ProjectsProps {
   lang: Language;
@@ -74,11 +74,18 @@ const Projects: React.FC<ProjectsProps> = ({ lang }) => {
                           </span>
                         ))}
                     </div>
-                    {project.githubUrl && (
-                      <a href={project.githubUrl} target="_blank" className="p-2 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
-                        <Github className="w-5 h-5" />
-                      </a>
-                    )}
+                    <div className="flex gap-2">
+                      {project.githubUrl && (
+                        <a href={project.githubUrl} target="_blank" className="p-2 hover:text-blue-600 dark:hover:text-blue-400 transition-colors" title="GitHub Source">
+                          <Github className="w-5 h-5" />
+                        </a>
+                      )}
+                      {project.websiteUrl && (
+                        <a href={project.websiteUrl} target="_blank" className="p-2 hover:text-blue-600 dark:hover:text-blue-400 transition-colors" title="Live Demo">
+                          <Globe className="w-5 h-5" />
+                        </a>
+                      )}
+                    </div>
                 </div>
               </div>
             </div>

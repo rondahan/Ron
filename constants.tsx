@@ -167,6 +167,18 @@ export const PROJECTS: Record<Language, Project[]> = {
       status: "Completed Academic Project",
       image: "https://images.unsplash.com/photo-1639322537228-f710d846310a?auto=format&fit=crop&q=80&w=1000",
       githubUrl: "https://github.com/rondahan/DecisionLab"
+    },
+    {
+      id: 'dream-maze',
+      title: "Dream Maze Solver",
+      category: "AI Algorithms",
+      description: "Advanced algorithmic solver for complex maze structures. Visit the live site to visualize the pathfinding and play with the solver in real-time!",
+      features: ["Optimized Pathfinding", "Heuristic Search", "Visual Maze Decomposition"],
+      technologies: ["Python", "Algorithms", "Graph Theory"],
+      status: "Open Source Project",
+      image: "https://images.unsplash.com/photo-1516110833967-0b5716ca1387?auto=format&fit=crop&q=80&w=1000",
+      githubUrl: "https://github.com/rondahan/Dream-Maze-Solover",
+      websiteUrl: "https://dream-maze-solover.vercel.app/"
     }
   ],
   he: [
@@ -180,6 +192,18 @@ export const PROJECTS: Record<Language, Project[]> = {
       status: "פרויקט אקדמי שהושלם",
       image: "https://images.unsplash.com/photo-1639322537228-f710d846310a?auto=format&fit=crop&q=80&w=1000",
       githubUrl: "https://github.com/rondahan/DecisionLab"
+    },
+    {
+      id: 'dream-maze',
+      title: "Dream Maze Solver",
+      category: "אלגוריתמי AI",
+      description: "פותר מבוכים אלגוריתמי מתקדם המנווט במבנים מורכבים. כנסו לאתר החי כדי לראות את האלגוריתם בפעולה ולשחק עם הפותר בזמן אמת!",
+      features: ["מציאת נתיב אופטימלית", "חיפוש היוריסטי", "פירוק מבוך ויזואלי"],
+      technologies: ["Python", "אלגוריתמים", "תורת הגרפים"],
+      status: "פרויקט קוד פתוח",
+      image: "https://images.unsplash.com/photo-1516110833967-0b5716ca1387?auto=format&fit=crop&q=80&w=1000",
+      githubUrl: "https://github.com/rondahan/Dream-Maze-Solover",
+      websiteUrl: "https://dream-maze-solover.vercel.app/"
     }
   ]
 };

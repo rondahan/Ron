@@ -1,6 +1,6 @@
 
 import React, { useState, useRef, useEffect } from 'react';
-import { Send, User, Trash2, X, Terminal, Activity, Bot, Zap, Cpu } from 'lucide-react';
+import { Send, User, Trash2, X, Terminal, Activity, Bot, Zap, Cpu, Key } from 'lucide-react';
 import { getRonAIResponse } from '../services/gemini';
 import { ChatMessage } from '../types';
 import { Language, TRANSLATIONS } from '../constants';
@@ -134,6 +134,7 @@ const Chatbot: React.FC<ChatbotProps> = ({ lang }) => {
   const [input, setInput] = useState('');
   const [isTyping, setIsTyping] = useState(false);
   const [isMinimized, setIsMinimized] = useState(true);
+  const [lastErrorType, setLastErrorType] = useState<'quota' | null>(null);
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -154,12 +155,29 @@ const Chatbot: React.FC<ChatbotProps> = ({ lang }) => {
     setMessages(prev => [...prev, { role: 'user', content: textToSend, timestamp: new Date() }]);
     if (!textOverride) setInput('');
     setIsTyping(true);
+    setLastErrorType(null);
 
     const history = messages.map(m => ({ role: m.role, content: m.content }));
     const responseText = await getRonAIResponse(history, textToSend, lang);
 
     setIsTyping(false);
     setMessages(prev => [...prev, { role: 'assistant', content: responseText, timestamp: new Date() }]);
+
+    // Check if the response contains keywords suggesting a quota error
+    if (responseText.includes('quota') || responseText.includes('מכסה')) {
+      setLastErrorType('quota');
+    }
+  };
+
+  const handleOpenKeySelection = async () => {
+    try {
+      // @ts-ignore
+      await window.aistudio.openSelectKey();
+      // Assume success and clear error state
+      setLastErrorType(null);
+    } catch (e) {
+      console.error("Could not open key selection", e);
+    }
   };
 
   const isRtlUI = lang === 'he';
@@ -197,8 +215,9 @@ const Chatbot: React.FC<ChatbotProps> = ({ lang }) => {
         <div className="flex-grow overflow-y-auto p-6 space-y-6 no-scrollbar bg-slate-950/80">
           {messages.map((msg, i) => {
             const isRTL = isRTLText(msg.content);
+            const isLastMessage = i === messages.length - 1;
             return (
-              <div key={i} className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}>
+              <div key={i} className={`flex flex-col ${msg.role === 'user' ? 'items-end' : 'items-start'}`}>
                   <div 
                     className={`max-w-[85%] p-4 rounded-2xl text-sm leading-relaxed transition-all relative ${
                       msg.role === 'user' 
@@ -219,6 +238,25 @@ const Chatbot: React.FC<ChatbotProps> = ({ lang }) => {
                       <div className="font-medium whitespace-pre-wrap break-words relative z-10">
                         {formatMessage(msg.content)}
                       </div>
+
+                      {/* Actionable Error Correction UI */}
+                      {isLastMessage && msg.role === 'assistant' && lastErrorType === 'quota' && (
+                        <div className="mt-4 pt-4 border-t border-white/10 space-y-3">
+                          <button 
+                            onClick={handleOpenKeySelection}
+                            className="flex items-center gap-2 w-full justify-center px-4 py-2.5 bg-cyan-500/20 hover:bg-cyan-500/40 text-cyan-400 rounded-xl text-[10px] font-black uppercase tracking-widest border border-cyan-500/30 transition-all active:scale-95 shadow-[0_0_15px_rgba(34,211,238,0.1)]"
+                          >
+                            <Key className="w-3 h-3" />
+                            {lang === 'he' ? 'השתמש במפתח API משלך' : 'Use your own API Key'}
+                          </button>
+                          <p className="text-[9px] text-slate-500 text-center leading-tight">
+                            {lang === 'he' 
+                              ? 'בחר מפתח API מפרויקט בתשלום כדי להימנע ממגבלות מכסה.' 
+                              : 'Select an API key from a paid project to bypass global quota limits.'}
+                            <a href="https://ai.google.dev/gemini-api/docs/billing" target="_blank" className="ml-1 text-cyan-600/60 underline hover:text-cyan-400">Docs</a>
+                          </p>
+                        </div>
+                      )}
                   </div>
               </div>
             );
